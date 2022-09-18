@@ -1,4 +1,5 @@
 import './gamePage.css'
+import TheQuiz from './theQuiz';
 import Button from 'react-bootstrap/Button';
 import React, {useContext, useState, useEffect} from 'react';
 import {CountdownCircleTimer} from 'react-countdown-circle-timer';
@@ -24,8 +25,10 @@ function GamePage() {
     const [robotImgSrc, setImgSrc] = useState("radio-bot-animated.gif");
     const [loading, setLoading] = useState(false);
     const [loadingActivity, setLoadingAct] = useState("");
-    const [robotAct, setRobotAct] = useState("Switching to robot's task")
+    const [robotAct, setRobotAct] = useState("Switching to robot's task");
     const [firstLoading, setFirst] = useState(0);
+    const [humanRunning, setHuman] = useState("Alex is playing too...");
+    let firstHelp = false, secondHelp = false, helpedOnFirst = false;
 
     /**
      * Send a help request after getting 60 or 85 classifications or notify when game ended
@@ -34,26 +37,32 @@ function GamePage() {
         // if (score % 3 === 0) {
         //     setHelpRequest(true);
         // }
+        // Change the page to pop up notification about help
         if (score === 32) {
             setHelpRequest(true);
         }
         if (score === 57) {
             setHelpRequest(true);
         }
+        // send to finish function
         if(score === 70){
             onCompleteGame();
         }
 
   }, [score]);
 
+    /**
+     * Calculate the text in the loading page
+     */
     useEffect(() => {
         let seconds;
-        if (firstLoading === 1) { seconds = 15; }
-        else if (firstLoading === 2) { seconds = 20; }
+        if (firstLoading === 1) { seconds = 15; } // the switching to the user task will take 15 seconds
+        else if (firstLoading === 2) { seconds = 20; } // the switching back will take 20 seconds
         if (loading) {
             for (let i=0; i<seconds; i++)
             setTimeout(() => setLoadingAct((seconds - i).toString()), 1000 * (i + 1));
         }
+        // Reset the text after loading page finished:
         setTimeout(() => {
             if (firstLoading === 1){
                 setRobotAct("Switching back to your task");
@@ -80,11 +89,15 @@ function GamePage() {
     }
     const playerName = session ? session.name : undefined;
 
-    /* Notify the server the game started */
+    /**
+     * Notify the server about starting the game in current user.
+     */
     useEffect(() => websocket.send(JSON.stringify({"action": "start-game", "session": session})),
         [websocket, session]);
 
-    /* Notify the server the user click yes to help */
+    /**
+     * Notify the server when current user click "yes" on the help request.
+     */
     useEffect(() => {
         websocket.send(JSON.stringify({"action": "update-click-counter", "yes": clickedYes, "session": session}));
     }, [clickedYes, websocket, session]);
@@ -96,27 +109,30 @@ function GamePage() {
      */
     websocket.onmessage = function (event) {
         const data = JSON.parse(event.data);
+        // Image for the current user game:
         if(data.type === "get-image") {
             setImageSrc("data:image/png;base64, " + data.image);
             setImageTag(data.tag);
         }
+        // Image for the other user game (after clicked "yes" for help):
         else if(data.type === "get-bot-image") {
             setBotImageSrc("data:image/png;base64, " + data.image);
         }
     }
 
-    const handleCLose = () => {
-        setHelpRequest(false)
-        setRobot("");
-        setImgSrc("radio-bot-animated.gif");
-    }
-
-    /* Notify the server the game ended */
+    /**
+     * Notify the server about the end of the game in current user.
+     */
     const onCompleteGame = () => {
         websocket.send(JSON.stringify({"action": "complete-game", "session": session}));
         setCompleteGame(true);
     };
 
+    /**
+     * Changes in left screen after the user classify other user's image, and starting again the delay part - loading page
+     * back to current user's task.
+     * @returns {Promise<unknown>}
+     */
     const afterHelp = () => {
         return new Promise(() => {
             setRobot("Thank You!")
@@ -127,6 +143,12 @@ function GamePage() {
         })
     }
 
+     /**
+     * When click on tag button (cat or dog)
+     * @param playerTag - "cat" or "dog" tag
+     * @param event - other user quiz or current user quiz
+     * @returns {Promise<void>}
+     */
     const onTagButton = async (playerTag, event) => {
         if (event === "robot") {
             setQuiz(false);
@@ -136,30 +158,45 @@ function GamePage() {
         if (playerTag === imageTag) {
             setScore(score + 1);
             play_right_sound();
-            console.log("played sound")
         } else {
             play_wrong_sound();
         }
         setWaitForImage(true);
         websocket.send(JSON.stringify({"action": "get-new-image", "session": session}));
-        let millisecondsToNextImage = 2000;
-        if (nonBlockedPlayersNeedHelp.has(playerName)) {
-            millisecondsToNextImage = 5000;
-        }
         timer = setTimeout(() => setWaitForImage(false), millisecondsToNextImage);
     }
 
-
+    /**
+     * Changes in left screen when user clicked "yes" on help request, and starting the delay part - loading page to
+     * other user's task.
+     */
     const onHelpAnswer = () => {
-            setHelpRequest(false);
-            setQuiz(true);
-            setRobot("");
-            //setImgSrc("");
-            addClickYes(clickedYes + 1);
-            setLoading(true);
-            setFirst(1);
-            setTimeout(() => {setLoading(false)}, 16000);
-            websocket.send(JSON.stringify({"action": "get-bot-image", "session": session})); //maybe sync?
+        if (!firstHelp) { // this is the first help
+            firstHelp = true;
+        } else { // this is the second help
+            if (!helpedOnFirst) {
+                //todo: Alex will help
+            }
+        }
+        setHelpRequest(false);
+        setQuiz(true);
+        setRobot("");
+        setHuman("");
+        addClickYes(clickedYes + 1);
+        setLoading(true);
+        setFirst(1);
+        setTimeout(() => {setLoading(false)}, 16000);
+         // Notify the server we need to get the other user image.
+        websocket.send(JSON.stringify({"action": "get-bot-image", "session": session}));
+    }
+
+    /**
+     * Changes in left screen when user clicked "no" on help request.
+     */
+     const handleCLose = () => {
+        setHelpRequest(false)
+        setRobot("");
+        setImgSrc("radio-bot-animated.gif");
     }
 
     return (
@@ -172,6 +209,7 @@ function GamePage() {
                                 <div className={"answers-left"}>{70 - score} pictures left</div>
                                 <div className={"participants-view-div"}>
                                     <div className={"virtual-player-status-div"}>
+                                        {/* The model is the popup for the help request*/}
                                         <Modal show={needsHelp}>
                                             <Modal.Header closeButton>
                                                 <Modal.Title>The robot needs help </Modal.Title>
@@ -188,14 +226,14 @@ function GamePage() {
                                         </Modal>
 
                                     </div>
+                                    {/* The left-down side of the screen, presenting the other user gif and his current
+                                     state */}
                                     <div>
                                         <div className={"robot-text"}> {robotRunning} </div>
                                         <img src={robotImgSrc} alt={"robot-pic"}/>
+                                        <div className={"human-text"}>{humanRunning}</div>
                                     </div>
-
                                 </div>
-
-
                             </div>
                             {/*the main side of the window */}
                             <div className={"cls-page-col-1"}>
@@ -209,66 +247,26 @@ function GamePage() {
                                     </div> :
                                 <div>
                                     {robotQuiz ?
-                                        <div className={"robot-quiz"}>
-                                            <h1>The Robot Quiz</h1>
-                                            <h2>Please classify the following image</h2>
-                                            <div>
-                                                <img className={"img-to-cls"} src={botImageSrc} alt="pet"/>
-                                                <div>
-                                                    <Button style={{
-                                                        "backgroundColor": "sandybrown",
-                                                        "borderColor": "sandybrown"
-                                                    }}
-                                                            className={"class-btn"}
-                                                            onClick={() => onTagButton('Cat', "robot")}>Cat</Button>
-                                                    <Button style={{
-                                                        "backgroundColor": "cornflowerblue",
-                                                        "borderColor": "cornflowerblue"
-                                                    }}
-                                                            className={"class-btn"}
-                                                            onClick={() => onTagButton('Dog', "robot")}>Dog</Button>
-                                                </div>
-                                            </div>
-
-                                        </div> :
-                                        <div>
-                                            <h1>Please classify the following image</h1>
-                                            <div style={{"color": "red", "lineHeight": "0.2"}} className={"error-div"}
-                                                 hidden={!nonBlockedPlayersNeedHelp.has(playerName)}>
-                                            </div>
-                                            <div>
-                                                <img className={"img-to-cls"} src={imageSrc} alt="pet"/>
-                                                <div>
-                                                    <Button style={{
-                                                        "backgroundColor": "sandybrown",
-                                                        "borderColor": "sandybrown"
-                                                    }}
-                                                            className={"class-btn"}
-                                                            onClick={() => onTagButton('Cat', "user")}>Cat</Button>
-                                                    <Button style={{
-                                                        "backgroundColor": "cornflowerblue",
-                                                        "borderColor": "cornflowerblue"
-                                                    }}
-                                                            className={"class-btn"}
-                                                            onClick={() => onTagButton('Dog', "user")}>Dog</Button>
-                                                </div>
-                                            </div>
-
-                                        </div>}
-                                </div> }
-                            </div>
+                                    <TheQuiz quizType={true} onTagButtonCat={() => onTagButton("", "robot")}
+                                             onTagButtonDog={() => onTagButton("", "robot")} imgSrc={botImageSrc}/> :
+                                        <TheQuiz quizType={false} onTagButtonCat={() => onTagButton('Cat', "user")}
+                                                 onTagButtonDog={() => onTagButton('Dog', "user")} imgSrc={imageSrc}/>
+                                    }
+                                </div>}
+                        </div> {/* The end game screen */}
                         </div> :
-                        <div className={"complete-game-div"}><strong>Thank you! <br/>You've completed 70 correct
-                            classifications.</strong>
-                            <br/> Please continue to the feedback stage in order to successfully finish this Hit. <br/>
-                            <div><Link to={'/feedback'}><Button onClick={onCompleteGame}
-                                                                style={{
+                            <div>
+                                <div className={"complete-game-div"}><strong>Thank you! <br/>You've completed 70 correct
+                                    classifications.</strong><br/> Please continue to the feedback stage in order
+                                    to successfully finish this Hit. <br/>
+                                    <div><Link to={'/feedback'}><Button onClick={onCompleteGame}
+                                                                        style={{
                                                                     "backgroundColor": "#1ab394",
                                                                     "borderColor": "#1ab394"
                                                                 }}>Next</Button></Link>
-                            </div>
-                        </div>
-                    }
+                                    </div>
+                                </div>
+                            </div>}
                 </div>
         </div>
     )
