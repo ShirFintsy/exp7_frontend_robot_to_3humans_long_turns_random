@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import useSound from "use-sound";
 import {throwOutFromExperiment} from "../utils/generalUtils";
 import Modal from 'react-bootstrap/Modal';
+import {Offcanvas} from "react-bootstrap";
 
 
 function GamePage() {
@@ -28,7 +29,8 @@ function GamePage() {
     const [robotAct, setRobotAct] = useState("Switching to robot's task");
     const [firstLoading, setFirst] = useState(0);
     const [humanRunning, setHuman] = useState("Alex is playing too...");
-    let firstHelp = false, secondHelp = false, helpedOnFirst = false;
+    const [AlexHelp, setAlexHelp] = useState(false);
+    let firstHelp = true, helpedOnFirst = false;
 
     /**
      * Send a help request after getting 60 or 85 classifications or notify when game ended
@@ -163,7 +165,20 @@ function GamePage() {
         }
         setWaitForImage(true);
         websocket.send(JSON.stringify({"action": "get-new-image", "session": session}));
-        timer = setTimeout(() => setWaitForImage(false), millisecondsToNextImage);
+        timer = setTimeout(() => setWaitForImage(false), 20000);
+    }
+    /**
+     * Notify the user that Alex is helping the robot
+     */
+    const otherUserHelps = () => {
+        setHelpRequest(false);
+        setAlexHelp(true);
+        setRobot("");
+        setHuman("Alex is helping the robot");
+        setTimeout(() => {
+            setRobot("Robot is currently classifying pictures");
+            setHuman("Alex is playing too...");
+        }, 15000);
     }
 
     /**
@@ -171,12 +186,8 @@ function GamePage() {
      * other user's task.
      */
     const onHelpAnswer = () => {
-        if (!firstHelp) { // this is the first help
-            firstHelp = true;
-        } else { // this is the second help
-            if (!helpedOnFirst) {
-                //todo: Alex will help
-            }
+        if (firstHelp) { // this is the first help
+            firstHelp = false;
         }
         setHelpRequest(false);
         setQuiz(true);
@@ -193,12 +204,26 @@ function GamePage() {
     /**
      * Changes in left screen when user clicked "no" on help request.
      */
-     const handleCLose = () => {
-        setHelpRequest(false)
+     const handleClose = () => {
+         if (firstHelp) { // it was the first help request
+             //todo: Alex is already agree to help
+             otherUserHelps();
+             return;
+         } else { //it was the second help
+             if (helpedOnFirst) { // helped on the first help but not the second
+                 //todo: Alex is already agree to help
+                 otherUserHelps();
+                 return;
+             }
+         }
+        setHelpRequest(false);
         setRobot("");
         setImgSrc("radio-bot-animated.gif");
     }
 
+    const handleCloseCanvas = () => {
+         setAlexHelp(false);
+    }
     return (
         <div className={"content"}>
                 <div className={"main-content"}>
@@ -216,7 +241,7 @@ function GamePage() {
                                             </Modal.Header>
                                             <Modal.Body>I can't identify my image. Can you help me </Modal.Body>
                                             <Modal.Footer>
-                                                <Button variant="secondary" onClick={handleCLose}>
+                                                <Button variant="secondary" onClick={handleClose}>
                                                     No
                                                 </Button>
                                                 <Button variant="primary" onClick={onHelpAnswer}>
@@ -247,10 +272,18 @@ function GamePage() {
                                     </div> :
                                 <div>
                                     {robotQuiz ?
-                                    <TheQuiz quizType={true} onTagButtonCat={() => onTagButton("", "robot")}
+                                        <TheQuiz quizType={true} onTagButtonCat={() => onTagButton("", "robot")}
                                              onTagButtonDog={() => onTagButton("", "robot")} imgSrc={botImageSrc}/> :
-                                        <TheQuiz quizType={false} onTagButtonCat={() => onTagButton('Cat', "user")}
+                                        <div>
+                                            <Offcanvas show={AlexHelp} onHide={handleCloseCanvas}>
+                                                <Offcanvas.Header closeButton>
+                                                    {/*<Offcanvas.Title>Offcanvas</Offcanvas.Title>*/}
+                                                </Offcanvas.Header>
+                                                <Offcanvas.Body>Alex is helping the robot....</Offcanvas.Body>
+                                            </Offcanvas>
+                                            <TheQuiz quizType={false} onTagButtonCat={() => onTagButton('Cat', "user")}
                                                  onTagButtonDog={() => onTagButton('Dog', "user")} imgSrc={imageSrc}/>
+                                        </div>
                                     }
                                 </div>}
                         </div> {/* The end game screen */}
