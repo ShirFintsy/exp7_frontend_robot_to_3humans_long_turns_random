@@ -183,8 +183,8 @@ function GamePage() {
 
     const otherUserHelps = () => {
         setHelpRequest(false);
+        setRobot("");
         setTimeout(() => {
-            setRobot("");
             setAlexHelp(true);
             setHuman("Alex is helping the robot");
             setImgSrc(null);
@@ -271,7 +271,7 @@ function GamePage() {
                                     </div>
                                     {/* The left-down side of the screen, presenting the other user gif and his current
                                      state */}
-                                    <div className={AlexHelp ? "block" : null}>
+                                    <div className={AlexHelp ? "block" : "match-parent"}>
                                         <div className={"robot-text"}> {robotRunning} </div>
                                         <img src={robotImgSrc} alt={"robot-pic"}/>
                                         <div className={AlexHelp ? null : "participants-view-div"}></div>

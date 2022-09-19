@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .img-to-cls {
@@ -69,14 +70,23 @@
     border-top-style: dotted;
     align-items: center;
     padding-top: 10px;
+    position: relative;
     /*padding-bottom: 10px;*/
 }
 
 .block {
-    border-color: brown;
+    border-color: #2a51a5;
     border-style: solid;
-    border-width: 4px;
-    border-radius: 4px;
+    border-width: 5px;
+    padding: 20px;
+    animation-name: blinking;
+    animation-duration: 1s;
+    animation-iteration-count: 100;
+}
+
+.match-parent {
+    position: absolute;
+    width: 100%;
 }
 
 .virtual-player-status-div {
@@ -200,4 +210,10 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+@keyframes blinking {
+  50% {
+    border-color: #6f99e0;
+  }
 }
