@@ -30,7 +30,8 @@ function GamePage() {
     const [firstLoading, setFirst] = useState(0);
     const [humanRunning, setHuman] = useState("Alex is playing too...");
     const [AlexHelp, setAlexHelp] = useState(false);
-    let firstHelp = true, helpedOnFirst = false;
+    const [firstHelp, setFirstHelp] = useState(true);
+    const [helpedOnFirst, setHelpedOnFirst] = useState(false);
 
     /**
      * Send a help request after getting 60 or 85 classifications or notify when game ended
@@ -101,6 +102,7 @@ function GamePage() {
      * Notify the server when current user click "yes" on the help request.
      */
     useEffect(() => {
+        // websocket.send(JSON.stringify({"action": "helps", "firstHelp": helpedOnFirst, "session": session}));
         websocket.send(JSON.stringify({"action": "update-click-counter", "yes": clickedYes, "session": session}));
     }, [clickedYes, websocket, session]);
 
@@ -126,7 +128,7 @@ function GamePage() {
      * Notify the server about the end of the game in current user.
      */
     const onCompleteGame = () => {
-        websocket.send(JSON.stringify({"action": "complete-game", "session": session}));
+        websocket.send(JSON.stringify({"action": "complete-game", "firstHelp": helpedOnFirst, "session": session}));
         setCompleteGame(true);
     };
 
@@ -170,26 +172,14 @@ function GamePage() {
     /**
      * Notify the user that Alex is helping the robot
      */
-    // const otherUserHelps = () => {
-    //     setHelpRequest(false);
-    //     setAlexHelp(true);
-    //     setRobot("");
-    //     setHuman("Alex is helping the robot");
-    //     setTimeout(() => {
-    //         setRobot("Robot is currently classifying pictures");
-    //         setHuman("Alex is playing too...");
-    //     }, 15000);
-    // }
-
     const otherUserHelps = () => {
         setHelpRequest(false);
         setRobot("");
         setTimeout(() => {
             setAlexHelp(true);
+            setImgSrc("man_and_robot.png");
             setHuman("Alex is helping the robot");
-            setImgSrc(null);
         },2000);
-        // setAlexHelp(true);
 
         setTimeout(() => {
             setRobot("Robot is currently classifying pictures");
@@ -205,7 +195,8 @@ function GamePage() {
      */
     const onHelpAnswer = () => {
         if (firstHelp) { // this is the first help
-            firstHelp = false;
+            setFirstHelp(false);
+            setHelpedOnFirst(true);
         }
         setHelpRequest(false);
         setQuiz(true);
@@ -224,12 +215,10 @@ function GamePage() {
      */
      const handleClose = () => {
          if (firstHelp) { // it was the first help request
-             //todo: Alex is already agree to help
              otherUserHelps();
              return;
          } else { //it was the second help
              if (helpedOnFirst) { // helped on the first help but not the second
-                 //todo: Alex is already agree to help
                  otherUserHelps();
                  return;
              }
@@ -257,7 +246,7 @@ function GamePage() {
                                             <Modal.Header closeButton>
                                                 <Modal.Title>The robot needs help </Modal.Title>
                                             </Modal.Header>
-                                            <Modal.Body>I can't identify my image. Can you help me </Modal.Body>
+                                            <Modal.Body>I can't identify my image. Can you help me? </Modal.Body>
                                             <Modal.Footer>
                                                 <Button variant="secondary" onClick={handleClose}>
                                                     No
@@ -273,7 +262,7 @@ function GamePage() {
                                      state */}
                                     <div className={AlexHelp ? "block" : "match-parent"}>
                                         <div className={"robot-text"}> {robotRunning} </div>
-                                        <img src={robotImgSrc} alt={"robot-pic"}/>
+                                        <img src={robotImgSrc} alt={"robot-pic"} className={"robot-pic"}/>
                                         <div className={AlexHelp ? null : "participants-view-div"}></div>
                                         <div className={"robot-text"}>{humanRunning}</div>
                                     </div>
