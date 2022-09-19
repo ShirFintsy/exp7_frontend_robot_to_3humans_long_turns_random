@@ -4,7 +4,6 @@ import './theQuiz.css';
 function TheQuiz({quizType, imgSrc, onTagButtonCat, onTagButtonDog}) {
 
     return(
-        //className={completed ? 'text-strike' : null}
        <div className={quizType ? "robot-quiz" : null}>
            {quizType ?
                <h1>The Robot Quiz</h1> :

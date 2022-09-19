@@ -68,11 +68,19 @@
     width: 95%;
     border-top-style: dotted;
     align-items: center;
-    padding-top: 20px;
+    padding-top: 10px;
+    /*padding-bottom: 10px;*/
+}
+
+.block {
+    border-color: brown;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 4px;
 }
 
 .virtual-player-status-div {
-    margin-bottom: 45px;
+    /*margin-bottom: 5px;*/
     font-size: 20px;
     font-weight: 500;
     height: 20px;
@@ -159,8 +167,13 @@
 
 .robot-text {
     font-size: 35px;
-    margin-top: 5px;
 }
+
+.robot-pic img{
+    height: 450px;
+    padding-bottom: 10px;
+}
+
 
 .spinner {
     width: 64px;

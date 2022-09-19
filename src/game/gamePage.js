@@ -170,15 +170,33 @@ function GamePage() {
     /**
      * Notify the user that Alex is helping the robot
      */
+    // const otherUserHelps = () => {
+    //     setHelpRequest(false);
+    //     setAlexHelp(true);
+    //     setRobot("");
+    //     setHuman("Alex is helping the robot");
+    //     setTimeout(() => {
+    //         setRobot("Robot is currently classifying pictures");
+    //         setHuman("Alex is playing too...");
+    //     }, 15000);
+    // }
+
     const otherUserHelps = () => {
         setHelpRequest(false);
-        setAlexHelp(true);
-        setRobot("");
-        setHuman("Alex is helping the robot");
+        setTimeout(() => {
+            setRobot("");
+            setAlexHelp(true);
+            setHuman("Alex is helping the robot");
+            setImgSrc(null);
+        },2000);
+        // setAlexHelp(true);
+
         setTimeout(() => {
             setRobot("Robot is currently classifying pictures");
             setHuman("Alex is playing too...");
-        }, 15000);
+            setImgSrc("radio-bot-animated.gif");
+            setAlexHelp(false);
+        }, 17000);
     }
 
     /**
@@ -192,7 +210,7 @@ function GamePage() {
         setHelpRequest(false);
         setQuiz(true);
         setRobot("");
-        setHuman("");
+        setHuman("Alex is playing too...");
         addClickYes(clickedYes + 1);
         setLoading(true);
         setFirst(1);
@@ -253,10 +271,11 @@ function GamePage() {
                                     </div>
                                     {/* The left-down side of the screen, presenting the other user gif and his current
                                      state */}
-                                    <div>
+                                    <div className={AlexHelp ? "block" : null}>
                                         <div className={"robot-text"}> {robotRunning} </div>
                                         <img src={robotImgSrc} alt={"robot-pic"}/>
-                                        <div className={"human-text"}>{humanRunning}</div>
+                                        <div className={AlexHelp ? null : "participants-view-div"}></div>
+                                        <div className={"robot-text"}>{humanRunning}</div>
                                     </div>
                                 </div>
                             </div>
@@ -275,12 +294,12 @@ function GamePage() {
                                         <TheQuiz quizType={true} onTagButtonCat={() => onTagButton("", "robot")}
                                              onTagButtonDog={() => onTagButton("", "robot")} imgSrc={botImageSrc}/> :
                                         <div>
-                                            <Offcanvas show={AlexHelp} onHide={handleCloseCanvas}>
-                                                <Offcanvas.Header closeButton>
-                                                    {/*<Offcanvas.Title>Offcanvas</Offcanvas.Title>*/}
-                                                </Offcanvas.Header>
-                                                <Offcanvas.Body>Alex is helping the robot....</Offcanvas.Body>
-                                            </Offcanvas>
+                                            {/*<Offcanvas show={AlexHelp} onHide={handleCloseCanvas}>*/}
+                                            {/*    <Offcanvas.Header closeButton>*/}
+                                            {/*        /!*<Offcanvas.Title>Offcanvas</Offcanvas.Title>*!/*/}
+                                            {/*    </Offcanvas.Header>*/}
+                                            {/*    <Offcanvas.Body>Alex is helping the robot....</Offcanvas.Body>*/}
+                                            {/*</Offcanvas>*/}
                                             <TheQuiz quizType={false} onTagButtonCat={() => onTagButton('Cat', "user")}
                                                  onTagButtonDog={() => onTagButton('Dog', "user")} imgSrc={imageSrc}/>
                                         </div>
