@@ -51,21 +51,33 @@ function UserFeedbackPage() {
             title: "Explain why",
             visibleIf: "{Q3} = true || {Q3} = false",
             isRequired: true
-          } ,{
+          },{
             type: "boolean",
             name: "Q4",
-            title: "In your opinion, if there were others that could have help robot (other than you), " +
+            title: "In your opinion, if Alex was not in the game (was not able to help), " +
                 "do you think you would have helped more or less?",
             isRequired: true
-          },{
+          } ,{
             type: "comment",
             name: "Q4 explanation",
             title: "Explain why",
             visibleIf: "{Q4} = true || {Q4} = false",
             isRequired: true
+          } ,{
+            type: "boolean",
+            name: "Q5",
+            title: "In your opinion, if there were more people that could have help robot (other than you and Alex), " +
+                "do you think you would have helped more or less?",
+            isRequired: true
+          },{
+            type: "comment",
+            name: "Q5 explanation",
+            title: "Explain why",
+            visibleIf: "{Q5} = true || {Q5} = false",
+            isRequired: true
           }, {
             type: "comment",
-            name: "Q5",
+            name: "Q6",
             title: "Any technical issues experienced or other thoughts?",
             isRequired: true
           }

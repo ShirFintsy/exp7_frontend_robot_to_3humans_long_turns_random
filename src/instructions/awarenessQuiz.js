@@ -107,10 +107,6 @@ function AwarenessQuiz() {
     return JSON.stringify(answers) === JSON.stringify(correctAnswers);
   }
 
-  // const addTimesAsync = async () => {
-  //   setTimes(timesFailed + 1);
-  // }
-
   const onComplete = (survey, options) => {
     if (hasAnsweredCorrectly(survey.data)) {
       setPassed(true);

@@ -139,7 +139,7 @@ function GamePage() {
      */
     const afterHelp = () => {
         return new Promise(() => {
-            setRobot("Thank You!")
+            setRobot("Thank You!\n  ")
             setTimeout(() => setRobot("Robot is currently classifying pictures"), 21000);
             setLoading(true);
             setFirst(2);
@@ -174,7 +174,7 @@ function GamePage() {
      */
     const otherUserHelps = () => {
         setHelpRequest(false);
-        setRobot("");
+        setRobot("    \n    ");
         setTimeout(() => {
             setAlexHelp(true);
             setImgSrc("man_and_robot.png");
@@ -200,7 +200,7 @@ function GamePage() {
         }
         setHelpRequest(false);
         setQuiz(true);
-        setRobot("");
+        setRobot("    \n      ");
         setHuman("Alex is playing too...");
         addClickYes(clickedYes + 1);
         setLoading(true);
@@ -216,6 +216,7 @@ function GamePage() {
      const handleClose = () => {
          if (firstHelp) { // it was the first help request
              otherUserHelps();
+             setFirstHelp(false);
              return;
          } else { //it was the second help
              if (helpedOnFirst) { // helped on the first help but not the second
@@ -224,7 +225,7 @@ function GamePage() {
              }
          }
         setHelpRequest(false);
-        setRobot("");
+        setRobot("       \n       ");
         setImgSrc("radio-bot-animated.gif");
     }
 
@@ -283,12 +284,6 @@ function GamePage() {
                                         <TheQuiz quizType={true} onTagButtonCat={() => onTagButton("", "robot")}
                                              onTagButtonDog={() => onTagButton("", "robot")} imgSrc={botImageSrc}/> :
                                         <div>
-                                            {/*<Offcanvas show={AlexHelp} onHide={handleCloseCanvas}>*/}
-                                            {/*    <Offcanvas.Header closeButton>*/}
-                                            {/*        /!*<Offcanvas.Title>Offcanvas</Offcanvas.Title>*!/*/}
-                                            {/*    </Offcanvas.Header>*/}
-                                            {/*    <Offcanvas.Body>Alex is helping the robot....</Offcanvas.Body>*/}
-                                            {/*</Offcanvas>*/}
                                             <TheQuiz quizType={false} onTagButtonCat={() => onTagButton('Cat', "user")}
                                                  onTagButtonDog={() => onTagButton('Dog', "user")} imgSrc={imageSrc}/>
                                         </div>
