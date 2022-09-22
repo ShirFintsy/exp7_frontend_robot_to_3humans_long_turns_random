@@ -41,10 +41,10 @@ function GamePage() {
         //     setHelpRequest(true);
         // }
         // Change the page to pop up notification about help
-        if (score === 32) {
+        if (score === 29) {
             setHelpRequest(true);
         }
-        if (score === 57) {
+        if (score === 54) {
             setHelpRequest(true);
         }
         // send to finish function
@@ -128,7 +128,11 @@ function GamePage() {
      * Notify the server about the end of the game in current user.
      */
     const onCompleteGame = () => {
-        websocket.send(JSON.stringify({"action": "complete-game", "firstHelp": helpedOnFirst, "session": session}));
+        let array = [];
+        if (clickedYes === 2) {array = [1,2]; }
+        else if (clickedYes === 1 && helpedOnFirst === true) { array = [1];}
+        else if (clickedYes === 1 && helpedOnFirst === false) { array = [2];}
+        websocket.send(JSON.stringify({"action": "complete-game", "help-array": array, "session": session}));
         setCompleteGame(true);
     };
 
@@ -200,7 +204,7 @@ function GamePage() {
         }
         setHelpRequest(false);
         setQuiz(true);
-        setRobot("    \n      ");
+        setRobot("");
         setHuman("Alex is playing too...");
         addClickYes(clickedYes + 1);
         setLoading(true);
