@@ -31,8 +31,8 @@ function GameInstructions() {
         in parallel (classifying a different set of pictures).<br/>
         From time to time the robot will probably have trouble correctly identifying if it is a dog or a cat in its
           picture. When this occurs, the robot might ask from both of you help. It is up to you to decide if you want to help
-          the robot (while helping you cannot progress with your own classification task). Alex is also able to help the
-        robot<br/><span style={{"fontWeight": "bold", "fontSize": "calc(1.2rem + .5vw)", "color": "red"}}> Notice! &nbsp;</span>
+          the robot (while helping you cannot progress with your own classification task and Alex is also able to help the
+        robot).<br/><span style={{"fontWeight": "bold", "fontSize": "calc(1.2rem + .5vw)", "color": "red"}}> Notice! &nbsp;</span>
         <span style={{"fontWeight": "bold"}}>Helping the robot takes time as we need to save your current state and stream the robot's task instead (and then
             switch back). We estimate this interruption to take around 30-40 seconds.<br/></span>
           You will not get score for identifying the robot's pictures.<br/>Once you finish correctly classifying 70
