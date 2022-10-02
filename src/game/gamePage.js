@@ -224,13 +224,15 @@ function GamePage() {
          if (firstHelp) { // it was the first help request
              //otherUserHelps();
              setFirstHelp(false);
-             return;
-         } else { //it was the second help
-             if (helpedOnFirst) { // helped on the first help but not the second
-                 //otherUserHelps();
-                 return;
-             }
          }
+             //return;
+
+         // } else { //it was the second help
+         //     if (helpedOnFirst) { // helped on the first help but not the second
+         //         //otherUserHelps();
+         //         return;
+         //     }
+         // }
         setHelpRequest(false);
         setRobot("       \n       ");
         setImgSrc("radio-bot-animated.gif");
