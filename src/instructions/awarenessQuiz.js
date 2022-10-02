@@ -16,7 +16,7 @@ function AwarenessQuiz() {
     "Q2": "I can choose to help the robot (click 'Yes') or not (click 'No')",
     "Q3": "The robot's current picture will be loaded and I will need to classify it (dog or cat)," +
         " and then my own task will be loaded back so I can complete it (about 30-40 seconds delay experienced)",
-    "Q4": "Once I classify correctly 70 pictures",
+    "Q4": "Both Alex and I can help the robot when it gets stuck",
     "Q5": "Once I complete 70 correct classifications and then answered the feedback questions"
   }
 
@@ -58,13 +58,13 @@ function AwarenessQuiz() {
       }, {
         type: "radiogroup",
         name: "Q4",
-        title: "When does the game end?",
+        title: "Who can help the robot when it is asking for help?",
         isRequired: true,
         hasNone: false,
         choices: [
           correctAnswers.Q4,
-          "When I help the robot",
-          "Once the robot finishes its own task",
+          "Only I can",
+          "Only Alex, the other user engaged in classification, can",
         ]
       }, {
       type: "radiogroup",

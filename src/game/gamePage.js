@@ -24,11 +24,12 @@ function GamePage() {
     const [robotRunning, setRobot] = useState("Robot is currently classifying pictures");
     const [clickedYes, addClickYes] = useState(0);
     const [robotImgSrc, setImgSrc] = useState("radio-bot-animated.gif");
+    const [AlexImgSrc, setAlexImgSrc] = useState("man.gif")
     const [loading, setLoading] = useState(false);
     const [loadingActivity, setLoadingAct] = useState("");
     const [robotAct, setRobotAct] = useState("Switching to robot's task");
     const [firstLoading, setFirst] = useState(0);
-    const [humanRunning, setHuman] = useState("Alex is playing too...");
+    const [humanRunning, setHuman] = useState("Alex is classifying pictures");
     const [AlexHelp, setAlexHelp] = useState(false);
     const [firstHelp, setFirstHelp] = useState(true);
     const [helpedOnFirst, setHelpedOnFirst] = useState(false);
@@ -178,16 +179,18 @@ function GamePage() {
      */
     const otherUserHelps = () => {
         setHelpRequest(false);
-        setRobot("    \n    ");
+        setRobot("\n");
         setTimeout(() => {
             setAlexHelp(true);
             setImgSrc("man_and_robot.png");
             setHuman("Alex is helping the robot");
+
         },2000);
 
         setTimeout(() => {
             setRobot("Robot is currently classifying pictures");
-            setHuman("Alex is playing too...");
+            setHuman("Alex is classifying pictures");
+            // setAlexImgSrc("man.gif");
             setImgSrc("radio-bot-animated.gif");
             setAlexHelp(false);
         }, 17000);
@@ -205,7 +208,7 @@ function GamePage() {
         setHelpRequest(false);
         setQuiz(true);
         setRobot("");
-        setHuman("Alex is playing too...");
+        setHuman("Alex is classifying pictures");
         addClickYes(clickedYes + 1);
         setLoading(true);
         setFirst(1);
@@ -218,16 +221,16 @@ function GamePage() {
      * Changes in left screen when user clicked "no" on help request.
      */
      const handleClose = () => {
-         if (firstHelp) { // it was the first help request
-             otherUserHelps();
-             setFirstHelp(false);
-             return;
-         } else { //it was the second help
-             if (helpedOnFirst) { // helped on the first help but not the second
-                 otherUserHelps();
-                 return;
-             }
-         }
+         // if (firstHelp) { // it was the first help request
+         //     otherUserHelps();
+         //     setFirstHelp(false);
+         //     return;
+         // } else { //it was the second help
+         //     if (helpedOnFirst) { // helped on the first help but not the second
+         //         otherUserHelps();
+         //         return;
+         //     }
+         // }
         setHelpRequest(false);
         setRobot("       \n       ");
         setImgSrc("radio-bot-animated.gif");
@@ -269,7 +272,10 @@ function GamePage() {
                                         <div className={"robot-text"}> {robotRunning} </div>
                                         <img src={robotImgSrc} alt={"robot-pic"} className={"robot-pic"}/>
                                         <div className={AlexHelp ? null : "participants-view-div"}></div>
-                                        <div className={"robot-text"}>{humanRunning}</div>
+                                        <div className={"Alex-part"}>
+                                            <img src={"man.gif"} alt={"Alex-pic"} className={"Alex-pic"}/>
+                                            <div className={"robot-text"}>{humanRunning}</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -52,28 +52,30 @@ function UserFeedbackPage() {
             visibleIf: "{Q3} = true || {Q3} = false",
             isRequired: true
           },{
-            type: "boolean",
+            type: "radiogroup",
             name: "Q4",
             title: "In your opinion, if Alex was not in the game (was not able to help), " +
                 "do you think you would have helped more or less?",
-            isRequired: true
+            isRequired: true,
+            "choices": [ "More", "Less", "Same"]
           } ,{
             type: "comment",
             name: "Q4 explanation",
             title: "Explain why",
-            visibleIf: "{Q4} = true || {Q4} = false",
+            visibleIf: "{Q4} = More || {Q4} = Less || {Q4} = Same",
             isRequired: true
           } ,{
-            type: "boolean",
+            type: "radiogroup",
             name: "Q5",
-            title: "In your opinion, if there were more people that could have help robot (other than you and Alex), " +
+            title: "In your opinion, if there were more people that could have help the robot (other than you and Alex), " +
                 "do you think you would have helped more or less?",
-            isRequired: true
+            isRequired: true,
+            "choices": [ "More", "Less", "Same"]
           },{
             type: "comment",
             name: "Q5 explanation",
             title: "Explain why",
-            visibleIf: "{Q5} = true || {Q5} = false",
+            visibleIf: "{Q5} = More || {Q5} = Less || {Q5} = Same",
             isRequired: true
           }, {
             type: "comment",
