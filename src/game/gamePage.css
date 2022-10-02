@@ -178,12 +178,18 @@
 
 .robot-text {
     font-size: 35px;
+    /*float: right;*/
+    margin-top: 40px;
+}
+
+.human-text {
+    font-size: 35px;
     float: right;
-    align-content: center;
+    margin-top: 40px;
 }
 
 .robot-pic {
-    width: 300px;
+    width: 250px;
     height: auto;
     padding-bottom: 15px;
     /*padding-bottom: 10px;*/
@@ -193,7 +199,7 @@
 .Alex-pic {
     width: 150px;
     height: auto;
-    float: left;
+    display: inline-block;
     border-radius: 50%;
 }
 

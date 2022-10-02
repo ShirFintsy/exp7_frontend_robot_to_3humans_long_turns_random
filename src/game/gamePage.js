@@ -221,16 +221,16 @@ function GamePage() {
      * Changes in left screen when user clicked "no" on help request.
      */
      const handleClose = () => {
-         // if (firstHelp) { // it was the first help request
-         //     otherUserHelps();
-         //     setFirstHelp(false);
-         //     return;
-         // } else { //it was the second help
-         //     if (helpedOnFirst) { // helped on the first help but not the second
-         //         otherUserHelps();
-         //         return;
-         //     }
-         // }
+         if (firstHelp) { // it was the first help request
+             //otherUserHelps();
+             setFirstHelp(false);
+             return;
+         } else { //it was the second help
+             if (helpedOnFirst) { // helped on the first help but not the second
+                 //otherUserHelps();
+                 return;
+             }
+         }
         setHelpRequest(false);
         setRobot("       \n       ");
         setImgSrc("radio-bot-animated.gif");
@@ -274,7 +274,7 @@ function GamePage() {
                                         <div className={AlexHelp ? null : "participants-view-div"}></div>
                                         <div className={"Alex-part"}>
                                             <img src={"man.gif"} alt={"Alex-pic"} className={"Alex-pic"}/>
-                                            <div className={"robot-text"}>{humanRunning}</div>
+                                            <div className={"human-text"}>{humanRunning}</div>
                                         </div>
                                     </div>
                                 </div>
