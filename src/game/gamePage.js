@@ -34,14 +34,14 @@ function GamePage() {
     const [AlexHelp, setAlexHelp] = useState(false);
     const [helpArray, setHelpArray] = useState([]);
     const [clickedNext, setClickedNext] = useState(false);
-    //let clickedNext = false;
+    const [name, setName] = useState("");
 
     /**
      * Send a help request after getting 60 or 85 classifications or notify when game ended
      */
     useEffect(() => {
         // Change the page to pop up notification about help
-        if (score === 19 || score === 31 || score === 50 || score === 58) {
+        if (score === 19 || score === 31 || score === 50 || score === 66) {
             setHelpRequest(true);
         }
 
@@ -119,6 +119,9 @@ function GamePage() {
         // Image for the other user game (after clicked "yes" for help):
         else if(data.type === "get-bot-image") {
             setBotImageSrc("data:image/png;base64, " + data.image);
+        } else if (data.type === "username") {
+            setName(data.name);
+            console.log("in name");
         }
     }
 
@@ -201,7 +204,7 @@ function GamePage() {
         if (score === 19) {setHelpArray(oldArray => [...oldArray, 1]);}
         if (score === 31) {setHelpArray(oldArray => [...oldArray, 2]);}
         if (score === 50) {setHelpArray(oldArray => [...oldArray, 3]);}
-        if (score === 58) {setHelpArray(oldArray => [...oldArray, 4]);}
+        if (score === 66) {setHelpArray(oldArray => [...oldArray, 4]);}
         //if (score === 19 || score === 31 || score === 50 || score === 58) {
         // if (firstHelp) { // this is the first help
         //     setFirstHelp(false);
@@ -248,7 +251,7 @@ function GamePage() {
                                     <div className={"virtual-player-status-div"}>
                                         {/* The model is the popup for the help request*/}
                                         <HelpRequests openWhen={needsHelp} onHelpAnswer={firstModel} firstHelp={true}
-                                                      name={"shir"} handleClose={""}/>
+                                                      name={name} handleClose={""}/>
                                         <HelpRequests openWhen={clickedNext} onHelpAnswer={onHelpAnswer} firstHelp={false}
                                                       handleClose={handleClose} name={"shir"}/>
 
