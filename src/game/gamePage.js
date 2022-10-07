@@ -9,6 +9,7 @@ import useSound from "use-sound";
 import {throwOutFromExperiment} from "../utils/generalUtils";
 import Modal from 'react-bootstrap/Modal';
 import {Offcanvas} from "react-bootstrap";
+import HelpRequests from "./helpRequests";
 
 
 function GamePage() {
@@ -31,25 +32,21 @@ function GamePage() {
     const [firstLoading, setFirst] = useState(0);
     const [humanRunning, setHuman] = useState("Alex is classifying pictures");
     const [AlexHelp, setAlexHelp] = useState(false);
-    const [firstHelp, setFirstHelp] = useState(true);
-    const [helpedOnFirst, setHelpedOnFirst] = useState(false);
+    const [helpArray, setHelpArray] = useState([]);
+    const [clickedNext, setClickedNext] = useState(false);
+    //let clickedNext = false;
 
     /**
      * Send a help request after getting 60 or 85 classifications or notify when game ended
      */
     useEffect(() => {
-        // if (score % 3 === 0) {
-        //     setHelpRequest(true);
-        // }
         // Change the page to pop up notification about help
-        if (score === 29) {
+        if (score === 19 || score === 31 || score === 50 || score === 58) {
             setHelpRequest(true);
         }
-        if (score === 54) {
-            setHelpRequest(true);
-        }
+
         // send to finish function
-        if(score === 70){
+        if(score === 80){
             onCompleteGame();
         }
 
@@ -129,11 +126,11 @@ function GamePage() {
      * Notify the server about the end of the game in current user.
      */
     const onCompleteGame = () => {
-        let array = [];
-        if (clickedYes === 2) {array = [1,2]; }
-        else if (clickedYes === 1 && helpedOnFirst === true) { array = [1];}
-        else if (clickedYes === 1 && helpedOnFirst === false) { array = [2];}
-        websocket.send(JSON.stringify({"action": "complete-game", "help-array": array, "session": session}));
+        // let array = [];
+        // if (clickedYes === 2) {array = [1,2]; }
+        // else if (clickedYes === 1 && helpedOnFirst === true) { array = [1];}
+        // else if (clickedYes === 1 && helpedOnFirst === false) { array = [2];}
+        websocket.send(JSON.stringify({"action": "complete-game", "help-array": helpArray, "session": session}));
         setCompleteGame(true);
     };
 
@@ -144,7 +141,7 @@ function GamePage() {
      */
     const afterHelp = () => {
         return new Promise(() => {
-            setRobot("Thank You!\n  ")
+            setRobot("Thank You!")
             setTimeout(() => setRobot("Robot is currently classifying pictures"), 21000);
             setLoading(true);
             setFirst(2);
@@ -201,11 +198,17 @@ function GamePage() {
      * other user's task.
      */
     const onHelpAnswer = () => {
-        if (firstHelp) { // this is the first help
-            setFirstHelp(false);
-            setHelpedOnFirst(true);
-        }
-        setHelpRequest(false);
+        if (score === 19) {setHelpArray(oldArray => [...oldArray, 1]);}
+        if (score === 31) {setHelpArray(oldArray => [...oldArray, 2]);}
+        if (score === 50) {setHelpArray(oldArray => [...oldArray, 3]);}
+        if (score === 58) {setHelpArray(oldArray => [...oldArray, 4]);}
+        //if (score === 19 || score === 31 || score === 50 || score === 58) {
+        // if (firstHelp) { // this is the first help
+        //     setFirstHelp(false);
+        //     setHelpedOnFirst(true);
+        // }
+        //setHelpRequest(false);
+        setClickedNext(false);
         setQuiz(true);
         setRobot("");
         setHuman("Alex is classifying pictures");
@@ -221,26 +224,18 @@ function GamePage() {
      * Changes in left screen when user clicked "no" on help request.
      */
      const handleClose = () => {
-         if (firstHelp) { // it was the first help request
-             //otherUserHelps();
-             setFirstHelp(false);
-         }
-             //return;
-
-         // } else { //it was the second help
-         //     if (helpedOnFirst) { // helped on the first help but not the second
-         //         //otherUserHelps();
-         //         return;
-         //     }
-         // }
-        setHelpRequest(false);
-        setRobot("       \n       ");
+        //setHelpRequest(false);
+        setClickedNext(false);
+        setRobot("");
         setImgSrc("radio-bot-animated.gif");
     }
 
-    const handleCloseCanvas = () => {
-         setAlexHelp(false);
-    }
+    const firstModel = () => {
+         setHelpRequest(false);
+         setClickedNext(true);
+         console.log("clicked next is true");
+     }
+
     return (
         <div className={"content"}>
                 <div className={"main-content"}>
@@ -248,24 +243,14 @@ function GamePage() {
                         <div className={"cls-page"}>
                             <div className={"cls-page-col-2"}>
                                 <div className={"score-div"}>Correct classification: {score}</div>
-                                <div className={"answers-left"}>{70 - score} pictures left</div>
+                                <div className={"answers-left"}>{80 - score} pictures left</div>
                                 <div className={"participants-view-div"}>
                                     <div className={"virtual-player-status-div"}>
                                         {/* The model is the popup for the help request*/}
-                                        <Modal show={needsHelp}>
-                                            <Modal.Header closeButton>
-                                                <Modal.Title>The robot needs help </Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>I can't identify my image. Can you help me? </Modal.Body>
-                                            <Modal.Footer>
-                                                <Button variant="secondary" onClick={handleClose}>
-                                                    No
-                                                </Button>
-                                                <Button variant="primary" onClick={onHelpAnswer}>
-                                                    Yes
-                                                </Button>
-                                            </Modal.Footer>
-                                        </Modal>
+                                        <HelpRequests openWhen={needsHelp} onHelpAnswer={firstModel} firstHelp={true}
+                                                      name={"shir"} handleClose={""}/>
+                                        <HelpRequests openWhen={clickedNext} onHelpAnswer={onHelpAnswer} firstHelp={false}
+                                                      handleClose={handleClose} name={"shir"}/>
 
                                     </div>
                                     {/* The left-down side of the screen, presenting the other user gif and his current
@@ -304,7 +289,7 @@ function GamePage() {
                         </div> {/* The end game screen */}
                         </div> :
                             <div>
-                                <div className={"complete-game-div"}><strong>Thank you! <br/>You've completed 70 correct
+                                <div className={"complete-game-div"}><strong>Thank you! <br/>You've completed 80 correct
                                     classifications.</strong><br/> Please continue to the feedback stage in order
                                     to successfully finish this Hit. <br/>
                                     <div><Link to={'/feedback'}><Button onClick={onCompleteGame}

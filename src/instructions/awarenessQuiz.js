@@ -17,7 +17,7 @@ function AwarenessQuiz() {
     "Q3": "The robot's current picture will be loaded and I will need to classify it (dog or cat)," +
         " and then my own task will be loaded back so I can complete it (about 30-40 seconds delay experienced)",
     "Q4": "Both Alex and I can help the robot when it gets stuck",
-    "Q5": "Once I complete 70 correct classifications and then answered the feedback questions"
+    "Q5": "Once I complete 80 correct classifications and then answered the feedback questions"
   }
 
   const quizDef = {
@@ -73,7 +73,7 @@ function AwarenessQuiz() {
         isRequired: true,
         hasNone: false,
         choices: [
-          "When I complete 70 successful classifications",
+          "When I complete 80 successful classifications",
           "When the robot decides I classified enough images",
             correctAnswers.Q5,
         ]
