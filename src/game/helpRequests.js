@@ -18,7 +18,7 @@ function HelpRequests({firstHelp, openWhen, handleClose, onHelpAnswer, name}) {
                         Next
                         </Button>:
                         <>
-                            <Button variant="secondary" onClick={handleClose}>
+                            <Button variant="primary" onClick={handleClose}>
                             No
                             </Button>
                             <Button variant="primary" onClick={onHelpAnswer}>

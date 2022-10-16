@@ -43,7 +43,7 @@ function UserFeedbackPage() {
           {
             type: "boolean",
             name: "Q3",
-            title: "If a human being was asking you for help instead of robot, do you think you would help him more?",
+            title: "If a human being was asking you for help instead of a robot, do you think you would help him more?",
             isRequired: true,
           } ,{
             type: "comment",

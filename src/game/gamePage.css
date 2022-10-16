@@ -2,7 +2,8 @@
     margin-top: 20px;
     display: flex;
     flex-direction: row;
-    height: 90vh;
+    height: 100%;
+    /*height: 90vh;*/
 }
 
 .cls-page-col-1 {
@@ -16,6 +17,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    height: 90vh;
 }
 
 .img-to-cls {
@@ -66,7 +68,7 @@
 .participants-view-div {
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: 100%;
     border-top-style: dotted;
     align-items: center;
     padding-top: 10px;
@@ -177,19 +179,20 @@
 }
 
 .robot-text {
-    font-size: 35px;
+    font-size: 25px;
     /*float: right;*/
     margin-top: 40px;
 }
 
 .human-text {
-    font-size: 35px;
+    font-size: 25px;
     float: right;
     margin-top: 40px;
+    margin-right: 40px;
 }
 
 .robot-pic {
-    width: 250px;
+    width: 200px;
     height: auto;
     padding-bottom: 15px;
     /*padding-bottom: 10px;*/
@@ -197,7 +200,7 @@
 }
 
 .Alex-pic {
-    width: 150px;
+    width: 120px;
     height: auto;
     display: inline-block;
     border-radius: 50%;
