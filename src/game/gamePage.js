@@ -35,6 +35,7 @@ function GamePage() {
     const [helpArray, setHelpArray] = useState([]);
     const [clickedNext, setClickedNext] = useState(false);
     const [name, setName] = useState("");
+    const [currentHelpNum, nextHelpNum] = useState(0);
 
     /**
      * Send a help request after getting 60 or 85 classifications or notify when game ended
@@ -43,6 +44,7 @@ function GamePage() {
         // Change the page to pop up notification about help
         if (score === 19 || score === 31 || score === 50 || score === 66) {
             setHelpRequest(true);
+            nextHelpNum(currentHelpNum + 1); // count the help request number
         }
 
         // send to finish function
@@ -129,10 +131,6 @@ function GamePage() {
      * Notify the server about the end of the game in current user.
      */
     const onCompleteGame = () => {
-        // let array = [];
-        // if (clickedYes === 2) {array = [1,2]; }
-        // else if (clickedYes === 1 && helpedOnFirst === true) { array = [1];}
-        // else if (clickedYes === 1 && helpedOnFirst === false) { array = [2];}
         websocket.send(JSON.stringify({"action": "complete-game", "help-array": helpArray, "session": session}));
         setCompleteGame(true);
     };
@@ -184,8 +182,9 @@ function GamePage() {
             setAlexHelp(true);
             setImgSrc("man_and_robot.png");
             setHuman("Alex is helping the robot");
+            setAlexImgSrc("white.png");
 
-        },2000);
+        },1500);
 
         setTimeout(() => {
             setRobot("Robot is currently classifying pictures");
@@ -193,7 +192,8 @@ function GamePage() {
             // setAlexImgSrc("man.gif");
             setImgSrc("radio-bot-animated.gif");
             setAlexHelp(false);
-        }, 17000);
+            setAlexImgSrc("man.gif");
+        }, 13000);
     }
 
     /**
@@ -205,13 +205,12 @@ function GamePage() {
         if (score === 31) {setHelpArray(oldArray => [...oldArray, 2]);}
         if (score === 50) {setHelpArray(oldArray => [...oldArray, 3]);}
         if (score === 66) {setHelpArray(oldArray => [...oldArray, 4]);}
-        //if (score === 19 || score === 31 || score === 50 || score === 58) {
-        // if (firstHelp) { // this is the first help
-        //     setFirstHelp(false);
-        //     setHelpedOnFirst(true);
-        // }
-        //setHelpRequest(false);
-        setClickedNext(false);
+        if (currentHelpNum === 1) {
+            otherUserHelps();
+            handleClose();
+            return;
+        }
+        setClickedNext(false); // move to the second model (open it)
         setQuiz(true);
         setRobot("");
         setHuman("Alex is classifying pictures");
@@ -250,10 +249,10 @@ function GamePage() {
                                 <div className={"participants-view-div"}>
                                     <div className={"virtual-player-status-div"}>
                                         {/* The model is the popup for the help request*/}
-                                        <HelpRequests openWhen={needsHelp} onHelpAnswer={firstModel} firstHelp={true}
-                                                      name={name} handleClose={""}/>
-                                        <HelpRequests openWhen={clickedNext} onHelpAnswer={onHelpAnswer} firstHelp={false}
-                                                      handleClose={handleClose} name={"shir"}/>
+                                        <HelpRequests openWhen={needsHelp} onHelpAnswer={firstModel} firstModel={true}
+                                                      helpNumber={currentHelpNum} name={name} handleClose={""}/>
+                                        <HelpRequests openWhen={clickedNext} onHelpAnswer={onHelpAnswer} firstModel={false}
+                                                      helpNumber={currentHelpNum} handleClose={handleClose} name={""}/>
 
                                     </div>
                                     {/* The left-down side of the screen, presenting the other user gif and his current
@@ -263,7 +262,7 @@ function GamePage() {
                                         <img src={robotImgSrc} alt={"robot-pic"} className={"robot-pic"}/>
                                         <div className={AlexHelp ? null : "participants-view-div"}></div>
                                         <div className={"Alex-part"}>
-                                            <img src={"man.gif"} alt={"Alex-pic"} className={"Alex-pic"}/>
+                                            <img src={AlexImgSrc} alt={"Alex-pic"} className={"Alex-pic"}/>
                                             <div className={"human-text"}>{humanRunning}</div>
                                         </div>
                                     </div>
