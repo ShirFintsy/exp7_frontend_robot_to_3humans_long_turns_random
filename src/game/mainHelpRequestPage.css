@@ -1,0 +1,18 @@
+.robot-eyes{
+    width: 100px;
+    height: auto;
+}
+
+.images {
+    width: 120px;
+    border-radius: 25px;
+}
+
+ul#profile-pics li {
+    display: inline;
+    padding: 30px 50px;
+}
+
+ul {
+    padding-top: 50px;
+}

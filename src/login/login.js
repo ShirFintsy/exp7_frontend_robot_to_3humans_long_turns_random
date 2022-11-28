@@ -42,6 +42,23 @@ function Login(props) {
         min: 18,
         title: "Your age:",
         isRequired: true,
+      }, {
+        type: "imagepicker",
+        name: "user picture",
+        title: "Choose your profile picture",
+        isRequired: true,
+        choices: [
+          {
+            "value": "default",
+            "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/lion.jpg",
+          }, {
+            "value": "man1",
+            "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/giraffe.jpg",
+          }, {
+            "value": "women1",
+            "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/panda.jpg",
+          },
+        ],
       }
     ]
   };

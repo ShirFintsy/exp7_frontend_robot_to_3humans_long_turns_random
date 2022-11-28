@@ -10,6 +10,7 @@ import {throwOutFromExperiment} from "../utils/generalUtils";
 import Modal from 'react-bootstrap/Modal';
 import {Offcanvas} from "react-bootstrap";
 import HelpRequests from "./helpRequests";
+import MainHelpRequestPage from "./mainHelpRequestPage";
 
 
 function GamePage() {
@@ -42,13 +43,13 @@ function GamePage() {
      */
     useEffect(() => {
         // Change the page to pop up notification about help
-        if (score === 19 || score === 31 || score === 50 || score === 66) {
+        if (score === 21 ||  score === 59) {
             setHelpRequest(true);
             nextHelpNum(currentHelpNum + 1); // count the help request number
         }
 
         // send to finish function
-        if(score === 80){
+        if(score === 70){
             onCompleteGame();
         }
 
@@ -102,7 +103,6 @@ function GamePage() {
      * Notify the server when current user click "yes" on the help request.
      */
     useEffect(() => {
-        // websocket.send(JSON.stringify({"action": "helps", "firstHelp": helpedOnFirst, "session": session}));
         websocket.send(JSON.stringify({"action": "update-click-counter", "yes": clickedYes, "session": session}));
     }, [clickedYes, websocket, session]);
 
@@ -172,45 +172,43 @@ function GamePage() {
         websocket.send(JSON.stringify({"action": "get-new-image", "session": session}));
         timer = setTimeout(() => setWaitForImage(false), 20000);
     }
-    /**
-     * Notify the user that Alex is helping the robot
-     */
-    const otherUserHelps = () => {
-        setHelpRequest(false);
-        setRobot("\n");
-        setTimeout(() => {
-            setAlexHelp(true);
-            setImgSrc("man_and_robot.png");
-            setHuman("Alex is helping the robot");
-            setAlexImgSrc("white.png");
-
-        },1500);
-
-        setTimeout(() => {
-            setRobot("Robot is currently classifying pictures");
-            setHuman("Alex is classifying pictures");
-            // setAlexImgSrc("man.gif");
-            setImgSrc("radio-bot-animated.gif");
-            setAlexHelp(false);
-            setAlexImgSrc("man.gif");
-        }, 13000);
-    }
+    // /**
+    //  * Notify the user that Alex is helping the robot
+    //  */
+    // const otherUserHelps = () => {
+    //     setHelpRequest(false);
+    //     setRobot("\n");
+    //     setTimeout(() => {
+    //         setAlexHelp(true);
+    //         setImgSrc("man_and_robot.png");
+    //         setHuman("Alex is helping the robot");
+    //         setAlexImgSrc("white.png");
+    //
+    //     },1500);
+    //
+    //     setTimeout(() => {
+    //         setRobot("Robot is currently classifying pictures");
+    //         setHuman("Alex is classifying pictures");
+    //         // setAlexImgSrc("man.gif");
+    //         setImgSrc("radio-bot-animated.gif");
+    //         setAlexHelp(false);
+    //         setAlexImgSrc("man.gif");
+    //     }, 13000);
+    // }
 
     /**
      * Changes in left screen when user clicked "yes" on help request, and starting the delay part - loading page to
      * other user's task.
      */
     const onHelpAnswer = () => {
-        if (score === 19) {setHelpArray(oldArray => [...oldArray, 1]);}
-        if (score === 31) {setHelpArray(oldArray => [...oldArray, 2]);}
-        if (score === 50) {setHelpArray(oldArray => [...oldArray, 3]);}
-        if (score === 66) {setHelpArray(oldArray => [...oldArray, 4]);}
-        if (currentHelpNum === 1) {
-            otherUserHelps();
-            handleClose();
-            return;
-        }
-        setClickedNext(false); // move to the second model (open it)
+        if (score === 21) {setHelpArray(oldArray => [...oldArray, 1]);}
+        if (score === 59) {setHelpArray(oldArray => [...oldArray, 2]);}
+        // if (currentHelpNum === 1) { // on the first help request ALex will help
+        //     otherUserHelps();
+        //     handleClose();
+        //     return;
+        // }
+        //setClickedNext(false); // move to the second model (open it)
         setQuiz(true);
         setRobot("");
         setHuman("Alex is classifying pictures");
@@ -226,8 +224,8 @@ function GamePage() {
      * Changes in left screen when user clicked "no" on help request.
      */
      const handleClose = () => {
-        //setHelpRequest(false);
-        setClickedNext(false);
+        setHelpRequest(false);
+        setClickedNext(true);
         setRobot("");
         setImgSrc("radio-bot-animated.gif");
     }
@@ -249,10 +247,10 @@ function GamePage() {
                                 <div className={"participants-view-div"}>
                                     <div className={"virtual-player-status-div"}>
                                         {/* The model is the popup for the help request*/}
-                                        <HelpRequests openWhen={needsHelp} onHelpAnswer={firstModel} firstModel={true}
-                                                      helpNumber={currentHelpNum} name={name} handleClose={""}/>
-                                        <HelpRequests openWhen={clickedNext} onHelpAnswer={onHelpAnswer} firstModel={false}
-                                                      helpNumber={currentHelpNum} handleClose={handleClose} name={""}/>
+                                        <HelpRequests openWhen={needsHelp} onClickNext={handleClose}/>
+                                        {/*<HelpRequests openWhen={clickedNext} onHelpAnswer={onHelpAnswer} firstModel={false}*/}
+                                        {/*              helpNumber={currentHelpNum} handleClose={handleClose} name={""}/>*/}
+                                        {/*<MainHelpRequestPage profilePicture={"man_and_robot.png"} username={"Temp"}/>*/}
 
                                     </div>
                                     {/* The left-down side of the screen, presenting the other user gif and his current
@@ -279,14 +277,19 @@ function GamePage() {
                                         </div>
                                     </div> :
                                 <div>
-                                    {robotQuiz ?
+                                    { clickedNext ?
+                                        <MainHelpRequestPage profilePicture={"man_and_robot.png"} username={"Temp"}/>:
+                                        <>{ robotQuiz ?
                                         <TheQuiz quizType={true} onTagButtonCat={() => onTagButton("", "robot")}
                                              onTagButtonDog={() => onTagButton("", "robot")} imgSrc={botImageSrc}/> :
                                         <div>
                                             <TheQuiz quizType={false} onTagButtonCat={() => onTagButton('Cat', "user")}
                                                  onTagButtonDog={() => onTagButton('Dog', "user")} imgSrc={imageSrc}/>
                                         </div>
+
+                                    }</>
                                     }
+
                                 </div>}
                         </div> {/* The end game screen */}
                         </div> :
