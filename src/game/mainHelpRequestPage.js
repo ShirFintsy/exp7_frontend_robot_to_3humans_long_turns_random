@@ -4,20 +4,20 @@ import useSound from "use-sound";
 import './mainHelpRequestPage.css'
 
 function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) {
-    // var soundSource = React.createRef();
-    const audioSrc = useRef(null);
-    // const audio = document.getElementById('audio')
-        useEffect(() => {
-        setTimeout(() => {
-            audioSrc.current.pause();
-            }, 4000);
-        // playSound();
-    }, []);
+    // // var soundSource = React.createRef();
+    // const audioSrc = useRef(null);
+    // // const audio = document.getElementById('audio')
+    //     useEffect(() => {
+    //     setTimeout(() => {
+    //         audioSrc.current.pause();
+    //         }, 4000);
+    //     // playSound();
+    // }, []);
     return (
         <>
-            <audio id="audio" loop autoPlay>
-                <source src="/sounds/help_request.mp3" type="audio/mpeg" ref={audioSrc}></source>
-            </audio>
+            {/*<audio id="audio" loop autoPlay>*/}
+            {/*    <source src="/sounds/help_request.mp3" type="audio/mpeg" ref={audioSrc}></source>*/}
+            {/*</audio>*/}
 
             <div id={"robot-eyes"}>
                 <img alt={"eye-robot-image"} src={"radio-bot-animated.gif"}/>

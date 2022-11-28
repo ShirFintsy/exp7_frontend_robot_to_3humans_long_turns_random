@@ -81,7 +81,8 @@ function GamePage() {
 
 
     const [play_right_sound] = useSound('/sounds/right.mp3');
-    const [play_wrong_sound] = useSound('/sounds/wrong.mp3')
+    const [play_wrong_sound] = useSound('/sounds/wrong.mp3');
+    const [playHelpRequest] = useSound('/sounds/help_request.mp3');
 
      let timer = null;
 
@@ -224,6 +225,10 @@ function GamePage() {
      * Changes in left screen when user clicked "no" on help request.
      */
      const handleClose = () => {
+         setTimeout(() => {
+             playHelpRequest();
+         }, 1500)
+
         setHelpRequest(false);
         setClickedNext(true);
         setRobot("");
