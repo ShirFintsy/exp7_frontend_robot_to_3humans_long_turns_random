@@ -230,6 +230,10 @@ function GamePage() {
         setImgSrc("radio-bot-animated.gif");
     }
 
+    const openRobotQuiz = () => {
+         setQuiz(true);
+    }
+
     const firstModel = () => {
          setHelpRequest(false);
          setClickedNext(true);
@@ -278,7 +282,8 @@ function GamePage() {
                                     </div> :
                                 <div>
                                     { clickedNext ?
-                                        <MainHelpRequestPage profilePicture={"man_and_robot.png"} username={"Temp"}/>:
+                                        <MainHelpRequestPage profilePicture={"man_and_robot.png"} username={"Temp"}
+                                                             onClickYes={() => openRobotQuiz()}/>:
                                         <>{ robotQuiz ?
                                         <TheQuiz quizType={true} onTagButtonCat={() => onTagButton("", "robot")}
                                              onTagButtonDog={() => onTagButton("", "robot")} imgSrc={botImageSrc}/> :

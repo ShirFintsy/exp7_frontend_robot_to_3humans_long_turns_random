@@ -1,15 +1,23 @@
 import Button from "react-bootstrap/Button";
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import useSound from "use-sound";
 import './mainHelpRequestPage.css'
 
-function MainHelpRequestPage({profilePicture, username}) {
-    const [playSound] = useSound('/sounds/help_request.wav');
-    useEffect(() => {
-        playSound();
+function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) {
+    // var soundSource = React.createRef();
+    const audioSrc = useRef(null);
+    // const audio = document.getElementById('audio')
+        useEffect(() => {
+        setTimeout(() => {
+            audioSrc.current.pause();
+            }, 4000);
+        // playSound();
     }, []);
     return (
         <>
+            <audio id="audio" loop autoPlay>
+                <source src="/sounds/help_request.mp3" type="audio/mpeg" ref={audioSrc}></source>
+            </audio>
 
             <div id={"robot-eyes"}>
                 <img alt={"eye-robot-image"} src={"radio-bot-animated.gif"}/>
@@ -25,7 +33,7 @@ function MainHelpRequestPage({profilePicture, username}) {
                 </li>
             </ul>
             <Button style={{"backgroundColor": "cornflowerblue", "borderColor": "cornflowerblue", "width": "60px"}}
-                           className={"class-btn"}> Yes</Button>
+                           className={"class-btn"} onClick={onClickYes}> Yes</Button>
             <Button style={{"backgroundColor": "cornflowerblue", "borderColor": "cornflowerblue", "width": "60px"}}
                            className={"class-btn"} > No</Button>
         </>
