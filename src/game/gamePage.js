@@ -43,7 +43,11 @@ function GamePage() {
      */
     useEffect(() => {
         // Change the page to pop up notification about help
-        if (score === 21 ||  score === 59) {
+        // if (score === 21 ||  score === 59) {
+        //     setHelpRequest(true);
+        //     nextHelpNum(currentHelpNum + 1); // count the help request number
+        // }
+        if (score % 3 === 0) {
             setHelpRequest(true);
             nextHelpNum(currentHelpNum + 1); // count the help request number
         }

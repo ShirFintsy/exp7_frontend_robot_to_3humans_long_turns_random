@@ -1,18 +1,16 @@
-body{
-  margin:0;
-  padding:0;
-  background: #282631;
-  display: flex;
-  width: 100%;
-  height:100vh;
-}
+/*body{*/
+/*  margin:0;*/
+/*  padding:0;*/
+/*  background: #282631;*/
+/*  display: flex;*/
+/*  width: 100%;*/
+/*  height:100vh;*/
+/*}*/
 .eye{
   margin: auto;
 /*   background:#ccc; */
 }
 .pupil{
-  /*transform: rotate(30deg);*/
-  /*transform-origin: ;*/
   position:relative;
 /*   transform:  rotate(390deg); */
 /*   transform-origin: 20px center; */
