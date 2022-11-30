@@ -4,21 +4,14 @@ import useSound from "use-sound";
 import './mainHelpRequestPage.css'
 
 function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) {
-    // // var soundSource = React.createRef();
-    // const audioSrc = useRef(null);
-    // // const audio = document.getElementById('audio')
-    //     useEffect(() => {
-    //     setTimeout(() => {
-    //         audioSrc.current.pause();
-    //         }, 4000);
-    //     // playSound();
-    // }, []);
+    let popButtons = false;
+    useEffect( () => {
+        setTimeout(() => {
+            popButtons = true; // the sound finished and the buttons will pop
+        }, 4000);
+    }, []);
     return (
         <>
-            {/*<audio id="audio" loop autoPlay>*/}
-            {/*    <source src="/sounds/help_request.mp3" type="audio/mpeg" ref={audioSrc}></source>*/}
-            {/*</audio>*/}
-
             <div id={"robot-eyes"}>
                 <img alt={"eye-robot-image"} src={"radio-bot-animated.gif"}/>
             </div>
@@ -32,10 +25,15 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
                     <img className={"images"} alt={"user"} src={profilePicture}/>
                 </li>
             </ul>
-            <Button style={{"backgroundColor": "cornflowerblue", "borderColor": "cornflowerblue", "width": "60px"}}
+            { popButtons ?
+                <>
+                    <Button style={{"backgroundColor": "cornflowerblue", "borderColor": "cornflowerblue", "width": "60px"}}
                            className={"class-btn"} onClick={onClickYes}> Yes</Button>
             <Button style={{"backgroundColor": "cornflowerblue", "borderColor": "cornflowerblue", "width": "60px"}}
-                           className={"class-btn"} > No</Button>
+                           className={"class-btn"} onClick={onClickNo}> No</Button>
+                </>:
+            <></> }
+
         </>
     )
 } export default MainHelpRequestPage;

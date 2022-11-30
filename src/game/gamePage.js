@@ -206,7 +206,7 @@ function GamePage() {
         if (score === 59) {setHelpArray(oldArray => [...oldArray, 2]);}
         // if (currentHelpNum === 1) { // on the first help request ALex will help
         //     otherUserHelps();
-        //     handleClose();
+        //     handleCloseNext();
         //     return;
         // }
         //setClickedNext(false); // move to the second model (open it)
@@ -224,13 +224,19 @@ function GamePage() {
     /**
      * Changes in left screen when user clicked "no" on help request.
      */
-     const handleClose = () => {
+     const handleCloseNext = () => {
          setTimeout(() => {
              playHelpRequest();
          }, 1500)
 
         setHelpRequest(false);
         setClickedNext(true);
+        setRobot("The robot needs help");
+        setImgSrc("");
+    }
+
+    const handleCloseRequest = () => {
+        setClickedNext(false);
         setRobot("");
         setImgSrc("radio-bot-animated.gif");
     }
@@ -245,6 +251,7 @@ function GamePage() {
          console.log("clicked next is true");
      }
 
+
     return (
         <div className={"content"}>
                 <div className={"main-content"}>
@@ -256,9 +263,9 @@ function GamePage() {
                                 <div className={"participants-view-div"}>
                                     <div className={"virtual-player-status-div"}>
                                         {/* The model is the popup for the help request*/}
-                                        <HelpRequests openWhen={needsHelp} onClickNext={handleClose}/>
+                                        <HelpRequests openWhen={needsHelp} onClickNext={handleCloseNext}/>
                                         {/*<HelpRequests openWhen={clickedNext} onHelpAnswer={onHelpAnswer} firstModel={false}*/}
-                                        {/*              helpNumber={currentHelpNum} handleClose={handleClose} name={""}/>*/}
+                                        {/*              helpNumber={currentHelpNum} handleCloseNext={handleCloseNext} name={""}/>*/}
                                         {/*<MainHelpRequestPage profilePicture={"man_and_robot.png"} username={"Temp"}/>*/}
 
                                     </div>
@@ -287,8 +294,9 @@ function GamePage() {
                                     </div> :
                                 <div>
                                     { clickedNext ?
-                                        <MainHelpRequestPage profilePicture={"man_and_robot.png"} username={"Temp"}
-                                                             onClickYes={() => openRobotQuiz()}/>:
+                                        <MainHelpRequestPage profilePicture={"man_and_robot.png"} username={name}
+                                                             onClickYes={() => openRobotQuiz()}
+                                                             onClickNo={() => handleCloseRequest()}/>:
                                         <>{ robotQuiz ?
                                         <TheQuiz quizType={true} onTagButtonCat={() => onTagButton("", "robot")}
                                              onTagButtonDog={() => onTagButton("", "robot")} imgSrc={botImageSrc}/> :
