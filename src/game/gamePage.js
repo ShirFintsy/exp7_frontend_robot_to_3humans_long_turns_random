@@ -204,13 +204,9 @@ function GamePage() {
     const onHelpAnswer = () => {
         if (score === 21) {setHelpArray(oldArray => [...oldArray, 1]);}
         if (score === 59) {setHelpArray(oldArray => [...oldArray, 2]);}
-        // if (currentHelpNum === 1) { // on the first help request ALex will help
-        //     otherUserHelps();
-        //     handleCloseNext();
-        //     return;
-        // }
-        //setClickedNext(false); // move to the second model (open it)
+
         setQuiz(true);
+        setClickedNext(false); // close the requset page
         setRobot("");
         setHuman("Alex is classifying pictures");
         addClickYes(clickedYes + 1);
@@ -227,7 +223,7 @@ function GamePage() {
      const handleCloseNext = () => {
          setTimeout(() => {
              playHelpRequest();
-         }, 1500)
+         }, 900)
 
         setHelpRequest(false);
         setClickedNext(true);
@@ -264,9 +260,6 @@ function GamePage() {
                                     <div className={"virtual-player-status-div"}>
                                         {/* The model is the popup for the help request*/}
                                         <HelpRequests openWhen={needsHelp} onClickNext={handleCloseNext}/>
-                                        {/*<HelpRequests openWhen={clickedNext} onHelpAnswer={onHelpAnswer} firstModel={false}*/}
-                                        {/*              helpNumber={currentHelpNum} handleCloseNext={handleCloseNext} name={""}/>*/}
-                                        {/*<MainHelpRequestPage profilePicture={"man_and_robot.png"} username={"Temp"}/>*/}
 
                                     </div>
                                     {/* The left-down side of the screen, presenting the other user gif and his current
@@ -295,7 +288,7 @@ function GamePage() {
                                 <div>
                                     { clickedNext ?
                                         <MainHelpRequestPage profilePicture={"man_and_robot.png"} username={name}
-                                                             onClickYes={() => openRobotQuiz()}
+                                                             onClickYes={() => onHelpAnswer()}
                                                              onClickNo={() => handleCloseRequest()}/>:
                                         <>{ robotQuiz ?
                                         <TheQuiz quizType={true} onTagButtonCat={() => onTagButton("", "robot")}

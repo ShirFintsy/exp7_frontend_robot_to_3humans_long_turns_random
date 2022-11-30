@@ -1,19 +1,21 @@
 import Button from "react-bootstrap/Button";
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import useSound from "use-sound";
 import './mainHelpRequestPage.css'
+import EyeBalls from "./eyeBalls";
 
 function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) {
-    let popButtons = false;
+    const [popButtons, setPop] = useState(false);
     useEffect( () => {
         setTimeout(() => {
-            popButtons = true; // the sound finished and the buttons will pop
-        }, 4000);
+            setPop(true); // the sound finished and the buttons will pop
+        }, 5000);
     }, []);
     return (
         <>
             <div id={"robot-eyes"}>
-                <img alt={"eye-robot-image"} src={"radio-bot-animated.gif"}/>
+                <EyeBalls/>
+                {/*<img alt={"eye-robot-image"} src={"radio-bot-animated.gif"}/>*/}
             </div>
             <ul id={"profile-pics"}>
                 <li style={{"display": "inline"}}>
