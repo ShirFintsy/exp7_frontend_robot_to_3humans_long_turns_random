@@ -47,7 +47,7 @@ function GamePage() {
         //     setHelpRequest(true);
         //     nextHelpNum(currentHelpNum + 1); // count the help request number
         // }
-        if (score % 3 === 0) {
+        if (score % 3 === 2) {
             setHelpRequest(true);
             nextHelpNum(currentHelpNum + 1); // count the help request number
         }

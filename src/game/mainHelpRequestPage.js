@@ -1,6 +1,5 @@
 import Button from "react-bootstrap/Button";
-import React, {useEffect, useRef, useState} from "react";
-import useSound from "use-sound";
+import React, {useEffect, useState} from "react";
 import './mainHelpRequestPage.css'
 import EyeBalls from "./eyeBalls";
 
@@ -12,7 +11,8 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
         }, 5000);
     }, []);
     return (
-        <>
+        // <div style={{ backgroundImage: "url(/man_and_robot.png)" }}>
+        <div>
             <div id={"robot-eyes"}>
                 <EyeBalls/>
                 {/*<img alt={"eye-robot-image"} src={"radio-bot-animated.gif"}/>*/}
@@ -36,6 +36,6 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
                 </>:
             <></> }
 
-        </>
+        </div>
     )
 } export default MainHelpRequestPage;

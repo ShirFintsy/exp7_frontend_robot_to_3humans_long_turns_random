@@ -1,17 +1,49 @@
-/*body{*/
-/*  margin:0;*/
-/*  padding:0;*/
-/*  background: #282631;*/
-/*  display: flex;*/
-/*  width: 100%;*/
-/*  height:100vh;*/
+/** {*/
+/*box-sizing: border-box;*/
+/*margin: 0;*/
+/*padding: 0;*/
 /*}*/
-.eye{
-  margin: auto;
-/*   background:#ccc; */
+
+/*body {*/
+/*!*width: 100px;*!*/
+/*  height: 300px;*/
+/* }*/
+
+.all-robot {
+  height: 500px;
 }
-.pupil{
-  position:relative;
-/*   transform:  rotate(390deg); */
-/*   transform-origin: 20px center; */
+
+
+.container {
+display: flex;
+justify-content: center;
+  padding-top: 190px;
+  padding-left: 80px;
+
+}
+
+.container .eyes {
+position: relative;
+width: 100px;
+height: 100px;
+display: block;
+background-color: #fff;
+margin: 0 20px;
+border-radius: 50%;
+box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #eece80,
+  inset 0 0 25px #f5af19;
+}
+
+.container .eyes::before {
+content: "";
+top: 50%;
+left: 50px;
+transform: translate(-50%, -50%);
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background: #000;
+position: absolute;
+border: 10px solid skyblue;
+box-sizing: border-box;
 }
