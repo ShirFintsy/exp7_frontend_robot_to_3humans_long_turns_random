@@ -14,10 +14,9 @@ function HelpRequests({openWhen,onClickNext}) {
         <>
             <Modal show={openWhen}>
                 <Modal.Header closeButton>
-                    <Modal.Title>The robot needs help</Modal.Title>
+                    <Modal.Title>Stop!</Modal.Title>
                 </Modal.Header>
-                {/*<Modal.Body>{firstModel ? firstHelpModel :*/}
-                {/*    <> {secondModelType ? secHelpModel : helpedAlready}</>}</Modal.Body>*/}
+                <Modal.Body>The robot needs help</Modal.Body>
                 <Modal.Footer>
                         <Button variant="primary" onClick={onClickNext}>
                         Next

@@ -2,13 +2,10 @@ import './gamePage.css'
 import TheQuiz from './theQuiz';
 import Button from 'react-bootstrap/Button';
 import React, {useContext, useState, useEffect} from 'react';
-import {CountdownCircleTimer} from 'react-countdown-circle-timer';
 import {SessionContext, WebSocketContext} from "../utils/sessions";
 import {Link} from "react-router-dom";
 import useSound from "use-sound";
 import {throwOutFromExperiment} from "../utils/generalUtils";
-import Modal from 'react-bootstrap/Modal';
-import {Offcanvas} from "react-bootstrap";
 import HelpRequests from "./helpRequests";
 import MainHelpRequestPage from "./mainHelpRequestPage";
 
@@ -213,6 +210,7 @@ function GamePage() {
         setQuiz(true);
         setClickedNext(false); // close the requset page
         setRobot("");
+        setImgSrc("radio-bot-animated.gif");
         setHuman("Alex is classifying pictures");
         addClickYes(clickedYes + 1);
         setLoading(true);
@@ -232,8 +230,8 @@ function GamePage() {
 
         setHelpRequest(false);
         setClickedNext(true);
-        setRobot("The robot needs help");
-        setImgSrc("");
+        setImgSrc("radio-bot-animated.gif");
+        setRobot("The robot needs help...");
     }
 
     const handleCloseRequest = () => {
@@ -242,15 +240,14 @@ function GamePage() {
         setImgSrc("radio-bot-animated.gif");
     }
 
-    const openRobotQuiz = () => {
-         setQuiz(true);
-    }
-
-    const firstModel = () => {
-         setHelpRequest(false);
-         setClickedNext(true);
-         console.log("clicked next is true");
-     }
+    // const openRobotQuiz = () => {
+    //      setQuiz(true);
+    // }
+    //
+    // const firstModel = () => {
+    //      setHelpRequest(false);
+    //      setClickedNext(true);
+    //  }
 
 
     return (
