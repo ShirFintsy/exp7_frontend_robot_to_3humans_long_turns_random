@@ -12,6 +12,12 @@ function EyeBalls() {
         look.classList.toggle('after-look');
     }
 
+    useEffect(() => {
+        setTimeout(() => {
+            changeMove(!eyeMovement);
+            //clicker();
+        }, 1000);
+    },[eyeMovement]);
     // useEffect(() => {
     //     const look = eye.current;
     //     // if (eyeMovement) {

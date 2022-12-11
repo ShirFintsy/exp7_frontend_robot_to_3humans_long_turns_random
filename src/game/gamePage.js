@@ -36,6 +36,7 @@ function GamePage() {
     const [helpArray, setHelpArray] = useState([]);
     const [clickedNext, setClickedNext] = useState(false);
     const [name, setName] = useState("");
+    const [profileImage, setProfileImage] = useState("");
     const [currentHelpNum, nextHelpNum] = useState(0);
 
     /**
@@ -128,7 +129,7 @@ function GamePage() {
             setBotImageSrc("data:image/png;base64, " + data.image);
         } else if (data.type === "username") {
             setName(data.name);
-            console.log("in name");
+            setProfileImage(data.profile);
         }
     }
 
@@ -291,7 +292,7 @@ function GamePage() {
                                     </div> :
                                 <div>
                                     { clickedNext ?
-                                        <MainHelpRequestPage profilePicture={"man_and_robot.png"} username={name}
+                                        <MainHelpRequestPage profilePicture={profileImage} username={name}
                                                              onClickYes={() => onHelpAnswer()}
                                                              onClickNo={() => handleCloseRequest()}/>:
                                         <>{ robotQuiz ?
