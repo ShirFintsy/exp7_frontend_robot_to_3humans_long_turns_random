@@ -50,13 +50,13 @@ function Login(props) {
         choices: [
           {
             "value": "default",
-            "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/lion.jpg",
+            "imageLink": "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg",
+          }, {
+            "value": "woman1",
+            "imageLink": "https://img.freepik.com/premium-vector/woman-profile-cartoon_18591-58480.jpg?w=2000",
           }, {
             "value": "man1",
-            "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/giraffe.jpg",
-          }, {
-            "value": "women1",
-            "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/panda.jpg",
+            "imageLink": "https://thumbs.dreamstime.com/b/man-profile-cartoon-smiling-round-icon-vector-illustration-graphic-design-135443422.jpg",
           },
         ],
       }
