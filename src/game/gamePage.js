@@ -41,14 +41,14 @@ function GamePage() {
      */
     useEffect(() => {
         // Change the page to pop up notification about help
-        // if (score === 21 ||  score === 59) {
-        //     setHelpRequest(true);
-        //     nextHelpNum(currentHelpNum + 1); // count the help request number
-        // }
-        if (score % 3 === 2) {
+        if (score === 21 ||  score === 59) {
             setHelpRequest(true);
             nextHelpNum(currentHelpNum + 1); // count the help request number
         }
+        // if (score % 3 === 2) {
+        //     setHelpRequest(true);
+        //     nextHelpNum(currentHelpNum + 1); // count the help request number
+        // }
 
         // send to finish function
         if(score === 70){
@@ -230,14 +230,18 @@ function GamePage() {
 
         setHelpRequest(false);
         setClickedNext(true);
-        setImgSrc("robot_with_eyes.jpeg");
+        setImgSrc("white.png");
         setRobot("The robot needs help...");
+        //setAlexImgSrc("white.png");
+
+        setHuman("Alex is also stopped")
     }
 
     const handleCloseRequest = () => {
         setClickedNext(false);
         setRobot("");
         setImgSrc("robot_with_eyes.jpeg");
+        setHuman("Alex is classifying pictures")
     }
 
     // const openRobotQuiz = () => {

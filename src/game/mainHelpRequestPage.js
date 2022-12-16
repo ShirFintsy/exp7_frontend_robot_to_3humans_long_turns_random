@@ -42,7 +42,7 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
                 {/*<img alt={"eye-robot-image"} src={"radio-bot-animated.gif"}/>*/}
             </div>
             <div className={"list-of-names"}>
-            <ImageList sx={{ width: '100%', height: 'auto'}}>
+            <ImageList sx={{ width: '100%', height: '100%'}}>
                 {itemData.map((item) => (
                     <ImageListItem key={item.img}>
                         <img src={`${item.img}?w=248&fit=crop&auto=format`}
