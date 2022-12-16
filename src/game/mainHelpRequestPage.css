@@ -6,6 +6,22 @@
     display: inline;
 }
 
+.list-of-names {
+    width: 35%;
+    height: auto;
+    display: inline-block;
+    position: center;
+    padding-top: 60px;
+    /*padding-left: 120px;*/
+}
+
+.buttons {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+}
+
 .images {
     width: 120px;
     border-radius: 25px;

@@ -36,7 +36,7 @@ function EyeBalls() {
             <div ref={eye} className="eyes"></div>
             <div className="eyes"></div>
         </div>
-            <Button onClick={()=> clicker()}> </Button>
+            {/*<Button onClick={()=> clicker()}> </Button>*/}
         </div>
     )
 } export default EyeBalls;
