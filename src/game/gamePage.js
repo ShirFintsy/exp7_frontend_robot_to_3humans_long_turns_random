@@ -41,7 +41,7 @@ function GamePage() {
      */
     useEffect(() => {
         // Change the page to pop up notification about help
-        if (score === 21 ||  score === 59) {
+        if (score === 29 ||  score === 45) {
             setHelpRequest(true);
             nextHelpNum(currentHelpNum + 1); // count the help request number
         }
@@ -261,7 +261,7 @@ function GamePage() {
                         <div className={"cls-page"}>
                             <div className={"cls-page-col-2"}>
                                 <div className={"score-div"}>Correct classification: {score}</div>
-                                <div className={"answers-left"}>{80 - score} pictures left</div>
+                                <div className={"answers-left"}>{70 - score} pictures left</div>
                                 <div className={"participants-view-div"}>
                                     <div className={"virtual-player-status-div"}>
                                         {/* The model is the popup for the help request*/}
@@ -311,7 +311,7 @@ function GamePage() {
                         </div> {/* The end game screen */}
                         </div> :
                             <div>
-                                <div className={"complete-game-div"}><strong>Thank you! <br/>You've completed 80 correct
+                                <div className={"complete-game-div"}><strong>Thank you! <br/>You've completed 70 correct
                                     classifications.</strong><br/> Please continue to the feedback stage in order
                                     to successfully finish this Hit. <br/>
                                     <div><Link to={'/feedback'}><Button onClick={onCompleteGame}

@@ -24,34 +24,22 @@ function UserFeedbackPage() {
             title: "Please explain your decision to help or not to help the robot?",
             isRequired: true
           }, {
-            type: "checkbox",
+            type: "boolean",
             name: "Q2",
-            title: "What could have influenced your decision to help the robot (you can choose more than one)?",
-            isRequired: true,
-            hasNone: false,
-            hasOther: true,
-            colCount: 1,
-            choices: [
-            "A voice help request",
-            "different wording of the help request",
-            "Present the rationale",
-          ]
-        }
-        ]
-      }, {
-        "elements": [
-          {
+            title: "In your opinion, the voice request increased your willing to help the robot.",
+            isRequired: true
+        }, {
             type: "boolean",
             name: "Q3",
             title: "If a human being was asking you for help instead of a robot, do you think you would help him more?",
             isRequired: true,
-          } ,{
+          }, {
             type: "comment",
             name: "Q3 explanation",
             title: "Explain why",
             visibleIf: "{Q3} = true || {Q3} = false",
             isRequired: true
-          },{
+          }, {
             type: "radiogroup",
             name: "Q4",
             title: "In your opinion, if Alex was not in the game (was not able to help), " +
@@ -64,22 +52,38 @@ function UserFeedbackPage() {
             title: "Explain why",
             visibleIf: "{Q4} = More || {Q4} = Less || {Q4} = Same",
             isRequired: true
-          } ,{
+          }
+        ]
+      }, {
+        "elements": [
+           {
             type: "radiogroup",
             name: "Q5",
+            title: "In your opinion, if Alex had helped more, do you think you would have helped more or less?",
+            isRequired: true,
+            "choices": [ "More", "Less", "Same"]
+          }, {
+            type: "comment",
+            name: "Q5 explanation",
+            title: "Explain why",
+            visibleIf: "{Q5} = More || {Q5} = Less || {Q5} = Same",
+            isRequired: true
+          } ,{
+            type: "radiogroup",
+            name: "Q6",
             title: "In your opinion, if there were more people that could have help the robot (other than you and Alex), " +
                 "do you think you would have helped more or less?",
             isRequired: true,
             "choices": [ "More", "Less", "Same"]
           },{
             type: "comment",
-            name: "Q5 explanation",
+            name: "Q6 explanation",
             title: "Explain why",
             visibleIf: "{Q5} = More || {Q5} = Less || {Q5} = Same",
             isRequired: true
           }, {
             type: "comment",
-            name: "Q6",
+            name: "Q7",
             title: "Any technical issues experienced or other thoughts?",
             isRequired: true
           }
