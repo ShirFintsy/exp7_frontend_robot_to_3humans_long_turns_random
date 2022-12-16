@@ -31,8 +31,8 @@ background-color: #fff;
 margin-right: 20px;
   margin-left: 45px;
 border-radius: 50%;
-box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #eece80,
-  inset 0 0 25px #f5af19;
+box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #ffffff,
+  inset 0 0 25px rgba(72, 71, 71, 0.83);
 /*position: relative;*/
 /*width: 100px;*/
 /*height: 100px;*/
@@ -49,8 +49,8 @@ content: "";
 top: 50%;
 left: 50px;
 transform: translate(-50%, -50%);
-width: 50px;
-height: 50px;
+width: 60px;
+height: 60px;
 border-radius: 50%;
 background: #000;
 position: absolute;

@@ -1,3 +1,8 @@
+/*.main {*/
+/*    border-style: solid;*/
+/*    border-width: 4px;*/
+/*}*/
+
 .robot-eyes{
     width: 50%;
     height: auto;
@@ -7,11 +12,11 @@
 }
 
 .list-of-names {
-    width: 35%;
+    width: 25%;
     height: auto;
     display: inline-block;
     position: center;
-    padding-top: 60px;
+    /*padding-top: 60px;*/
     /*padding-left: 120px;*/
 }
 
@@ -19,7 +24,7 @@
     width: 100%;
     height: auto;
     display: block;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 
 .images {
