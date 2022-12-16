@@ -13,7 +13,7 @@ function AwarenessQuiz() {
 
   const correctAnswers = {
     "Q1": "I will get no payment",
-    "Q2": "I can choose to help the robot (click 'Yes') or not (click 'No')",
+    "Q2": "I can choose to help the robot or not",
     "Q3": "The robot's current picture will be loaded and I will need to classify it (dog or cat)," +
         " and then my own task will be loaded back so I can complete it (about 30-40 seconds delay experienced)",
     "Q4": "Both the other user and I can help the robot when it gets stuck",
@@ -41,13 +41,14 @@ function AwarenessQuiz() {
         hasNone: false,
         choices: [
           "I will ignore that",
-          "I will always click 'Yes'",
+          "I will always click the button to help the robot'",
           correctAnswers.Q2
         ]
       }, {
         type: "radiogroup",
         name: "Q3",
-        title: "What will happen if you click on 'Yes' in response to the help request of the robot?",
+        title: "What will happen if you click on 'I will be happy to help the robot' in response to the help request" +
+            " of the robot?",
         isRequired: true,
         hasNone: false,
         choices: [

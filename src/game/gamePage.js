@@ -12,7 +12,6 @@ import MainHelpRequestPage from "./mainHelpRequestPage";
 
 function GamePage() {
     const [isCompleteGame, setCompleteGame] = useState(false);
-    const [nonBlockedPlayersNeedHelp, setNonBlockedPlayersNeedHelp] = useState(new Set());
     const [imageSrc, setImageSrc] = useState(null);
     const [imageTag, setImageTag] = useState(null);
     const [botImageSrc, setBotImageSrc] = useState(null);
@@ -45,10 +44,6 @@ function GamePage() {
             setHelpRequest(true);
             nextHelpNum(currentHelpNum + 1); // count the help request number
         }
-        // if (score % 3 === 2) {
-        //     setHelpRequest(true);
-        //     nextHelpNum(currentHelpNum + 1); // count the help request number
-        // }
 
         // send to finish function
         if(score === 70){
