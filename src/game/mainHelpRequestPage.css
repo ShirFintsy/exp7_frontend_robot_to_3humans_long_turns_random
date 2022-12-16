@@ -1,6 +1,9 @@
 .robot-eyes{
-    width: 100px;
+    width: 50%;
     height: auto;
+    margin: auto;
+    padding: 70px;
+    display: inline;
 }
 
 .images {

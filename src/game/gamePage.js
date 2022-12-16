@@ -22,7 +22,7 @@ function GamePage() {
     const [robotQuiz, setQuiz] = useState(false);
     const [robotRunning, setRobot] = useState("Robot is currently classifying pictures");
     const [clickedYes, addClickYes] = useState(0);
-    const [robotImgSrc, setImgSrc] = useState("radio-bot-animated.gif");
+    const [robotImgSrc, setImgSrc] = useState("robot_with_eyes.jpeg");
     const [AlexImgSrc, setAlexImgSrc] = useState("man.gif")
     const [loading, setLoading] = useState(false);
     const [loadingActivity, setLoadingAct] = useState("");
@@ -210,7 +210,7 @@ function GamePage() {
         setQuiz(true);
         setClickedNext(false); // close the requset page
         setRobot("");
-        setImgSrc("radio-bot-animated.gif");
+        setImgSrc("robot_with_eyes.jpeg");
         setHuman("Alex is classifying pictures");
         addClickYes(clickedYes + 1);
         setLoading(true);
@@ -230,14 +230,14 @@ function GamePage() {
 
         setHelpRequest(false);
         setClickedNext(true);
-        setImgSrc("radio-bot-animated.gif");
+        setImgSrc("robot_with_eyes.jpeg");
         setRobot("The robot needs help...");
     }
 
     const handleCloseRequest = () => {
         setClickedNext(false);
         setRobot("");
-        setImgSrc("radio-bot-animated.gif");
+        setImgSrc("robot_with_eyes.jpeg");
     }
 
     // const openRobotQuiz = () => {

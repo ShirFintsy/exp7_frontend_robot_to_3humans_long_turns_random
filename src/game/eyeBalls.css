@@ -23,15 +23,25 @@ justify-content: center;
 }
 
 .container .eyes {
-position: relative;
+  position: relative;
 width: 100px;
 height: 100px;
 display: block;
 background-color: #fff;
-margin: 0 20px;
+margin-right: 20px;
+  margin-left: 45px;
 border-radius: 50%;
 box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #eece80,
   inset 0 0 25px #f5af19;
+/*position: relative;*/
+/*width: 100px;*/
+/*height: 100px;*/
+/*display: block;*/
+/*background-color: #fff;*/
+/*margin: 0 20px;*/
+/*border-radius: 50%;*/
+/*box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #eece80,*/
+/*  inset 0 0 25px #f5af19;*/
 }
 
 .container .eyes::before {
