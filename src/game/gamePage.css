@@ -188,12 +188,13 @@
     font-size: 25px;
     float: right;
     margin-top: 40px;
-    margin-right: 40px;
+    margin-right: 70px;
 }
 
 .robot-pic {
     width: 200px;
     height: auto;
+    padding-top: 40px;
     padding-bottom: 15px;
     /*padding-bottom: 10px;*/
     /*position: absolute;*/

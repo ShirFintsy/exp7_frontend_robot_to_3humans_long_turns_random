@@ -230,7 +230,7 @@ function GamePage() {
 
         setHelpRequest(false);
         setClickedNext(true);
-        setImgSrc("white.png");
+        setImgSrc("thinking.gif");
         setRobot("The robot needs help...");
         //setAlexImgSrc("white.png");
 
