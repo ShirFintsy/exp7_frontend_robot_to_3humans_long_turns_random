@@ -41,7 +41,7 @@ function AwarenessQuiz() {
         hasNone: false,
         choices: [
           "I will ignore that",
-          "I will always click the button to help the robot'",
+          "I will always click the button to help the robot",
           correctAnswers.Q2
         ]
       }, {

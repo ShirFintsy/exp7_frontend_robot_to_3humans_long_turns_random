@@ -79,7 +79,7 @@ function UserFeedbackPage() {
             type: "comment",
             name: "Q6 explanation",
             title: "Explain why",
-            visibleIf: "{Q5} = More || {Q5} = Less || {Q5} = Same",
+            visibleIf: "{Q6} = More || {Q6} = Less || {Q6} = Same",
             isRequired: true
           }, {
             type: "comment",

@@ -199,8 +199,8 @@ function GamePage() {
      * other user's task.
      */
     const onHelpAnswer = () => {
-        if (score === 21) {setHelpArray(oldArray => [...oldArray, 1]);}
-        if (score === 59) {setHelpArray(oldArray => [...oldArray, 2]);}
+        if (score === 29) {setHelpArray(oldArray => [...oldArray, 1]);}
+        if (score === 45) {setHelpArray(oldArray => [...oldArray, 2]);}
 
         setQuiz(true);
         setClickedNext(false); // close the requset page

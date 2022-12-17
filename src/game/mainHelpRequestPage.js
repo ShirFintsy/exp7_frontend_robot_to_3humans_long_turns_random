@@ -35,7 +35,7 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
     return (
         // <div style={{ backgroundImage: "url(/man_and_robot.png)" }}>
         <div >
-            <div id={"robot-eyes"} style={{"border": 'double', "margin": '20px'}}>
+            <div id={"robot-eyes"} style={{"border": 'double', "margin": '10px'}}>
                 <EyeBalls/>
                 {/*<img alt={"eye-robot-image"} src={"radio-bot-animated.gif"}/>*/}
             </div>
