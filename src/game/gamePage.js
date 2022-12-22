@@ -225,6 +225,9 @@ function GamePage() {
 
         setHelpRequest(false);
         setClickedNext(true);
+        setTimeout(() => {
+            handleCloseRequest()
+        }, [14000])
         setImgSrc("thinking.gif");
         setRobot("The robot needs help...");
         //setAlexImgSrc("white.png");

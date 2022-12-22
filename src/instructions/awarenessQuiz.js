@@ -47,7 +47,7 @@ function AwarenessQuiz() {
       }, {
         type: "radiogroup",
         name: "Q3",
-        title: "What will happen if you click on 'I will be happy to help the robot' in response to the help request" +
+        title: "What will happen if you click on 'I'll help' in response to the help request" +
             " of the robot?",
         isRequired: true,
         hasNone: false,

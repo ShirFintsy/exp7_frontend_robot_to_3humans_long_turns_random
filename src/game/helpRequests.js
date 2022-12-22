@@ -14,7 +14,7 @@ function HelpRequests({openWhen,onClickNext}) {
         <>
             <Modal show={openWhen}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Stop!</Modal.Title>
+                    <Modal.Title>Attention!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>The robot needs help</Modal.Body>
                 <Modal.Footer>

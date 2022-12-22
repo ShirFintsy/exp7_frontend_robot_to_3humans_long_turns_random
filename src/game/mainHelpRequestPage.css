@@ -12,6 +12,11 @@
     /*display: inline;*/
 }
 
+.request-text {
+    font-weight: bold;
+    font-size: 22px;
+}
+
 .list-of-names {
     width: 25%;
     height: auto;

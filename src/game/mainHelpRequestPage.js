@@ -36,8 +36,8 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
         // <div style={{ backgroundImage: "url(/man_and_robot.png)" }}>
         <div >
             <div id={"robot-eyes"} style={{"border": 'double', "margin": '10px'}}>
+                <p className={"request-text"}> I can't identify my picture. Can one of you help me?</p>
                 <EyeBalls/>
-                {/*<img alt={"eye-robot-image"} src={"radio-bot-animated.gif"}/>*/}
             </div>
             <div className={"list-of-names"}>
             <ImageList sx={{ width: '100%', height: '100%'}}>
@@ -54,9 +54,9 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
             { popButtons ?
                 <div className={"buttons"}>
                     <Button style={{"backgroundColor": "darksalmon", "borderColor": "darksalmon", "width": "200px"}}
-                           className={"class-btn"} onClick={onClickYes}> I will be happy to help the robot</Button>
+                           className={"class-btn"} onClick={onClickYes}> I'll help</Button>
             <Button style={{"backgroundColor": "darksalmon", "borderColor": "darksalmon", "width": "200px"}}
-                           className={"class-btn"} onClick={onClickNo}> I'm not interested in helping the robot</Button>
+                           className={"class-btn"} onClick={onClickNo}> No, sorry</Button>
                 </div>:
             <></> }
 
