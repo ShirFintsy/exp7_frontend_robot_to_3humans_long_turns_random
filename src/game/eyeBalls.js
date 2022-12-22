@@ -9,25 +9,24 @@ function EyeBalls() {
     const eye = createRef();
     const clicker = () => {
         const look = eye.current;
+        let angel = -25
+        // while (1) {
         look.classList.toggle('after-look');
+        // look.style.transform = `translateY(${angel}%)`;
+        // look.style.transform += `translateX(${angel}%)`;
+            angel -= 3
+
+
+
     }
 
     useEffect(() => {
         setTimeout(() => {
-            changeMove(!eyeMovement);
-            //clicker();
-        }, 1000);
+            //changeMove(!eyeMovement);
+            clicker();
+        }, 2000);
     },[eyeMovement]);
-    // useEffect(() => {
-    //     const look = eye.current;
-    //     // if (eyeMovement) {
-    //     //     look.classList.toggle('after-look')
-    //     // }
-    //     look.classList.toggle('after-look');
-    //     setTimeout(() => {
-    //         changeMove(!eyeMovement);
-    //     }, 2000);
-    // }, [eyeMovement]);
+
 
     return (
         <div className={"all-robot"} style={{ backgroundImage: "url(/eyes_of_the_robot.jpeg)", backgroundRepeat  : 'no-repeat',
