@@ -10,9 +10,19 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
     if (profilePicture === "default") { //todo: change with real images
         srcImage = "profile_pictures/default.jpg";
     } else if (profilePicture === "woman1") {
-        srcImage = "profile_pictures/woman1.webp";
-    } else {
-        srcImage = "profile_pictures/man1.jpeg";
+        srcImage = "profile_pictures/woman1.png";
+    } else if (profilePicture === "woman2") {
+        srcImage = "profile_pictures/woman2.png";
+    } else if (profilePicture === "woman3") {
+        srcImage = "profile_pictures/woman3.png";
+    } else if (profilePicture === "woman4") {
+        srcImage = "profile_pictures/woman4.png";
+    } else if (profilePicture === "man1") {
+        srcImage = "profile_pictures/man1.png";
+    } else if (profilePicture === "man2") {
+        srcImage = "profile_pictures/man2.png";
+    } else { //man3
+        srcImage = "profile_pictures/woman3.png";
     }
 
     const itemData = [
