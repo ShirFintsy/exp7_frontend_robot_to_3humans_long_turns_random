@@ -20,21 +20,30 @@ function EyeBalls() {
 
     }
 
-    useEffect(() => {
-        setTimeout(() => {
-            //changeMove(!eyeMovement);
-            clicker();
-        }, 2000);
-    },[eyeMovement]);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         //changeMove(!eyeMovement);
+    //         clicker();
+    //     }, 2000);
+    // },[eyeMovement]);
 
 
     return (
         <div className={"all-robot"} style={{ backgroundImage: "url(/eyes_of_the_robot.jpeg)", backgroundRepeat  : 'no-repeat',
        backgroundPosition: 'center 0%', backgroundSize: 'contain', width: '100%', height: '450px', display: 'block'}}>
-        <div className="container">
-            <div ref={eye} className="eyes"></div>
-            <div className="eyes"></div>
-        </div>
+            <div className={"eyes"}>
+            <div className="right-eye">
+                <div className="circle"></div>
+            </div>
+            <div className="left-eye">
+                <div className="circle"></div>
+            </div>
+            </div>
+
+        {/*<div className="container">*/}
+        {/*    <div ref={eye} className="eyes"></div>*/}
+        {/*    <div className="eyes"></div>*/}
+        {/*</div>*/}
             {/*<Button onClick={()=> clicker()}> </Button>*/}
         </div>
     )

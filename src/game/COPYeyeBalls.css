@@ -1,0 +1,76 @@
+/** {*/
+/*box-sizing: border-box;*/
+/*margin: 0;*/
+/*padding: 0;*/
+/*}*/
+
+/*body {*/
+/*!*width: 100px;*!*/
+/*  height: 300px;*/
+/* }*/
+
+.all-robot {
+  height: 500px;
+}
+
+
+.container {
+display: flex;
+justify-content: center;
+  padding-top: 190px;
+  padding-left: 80px;
+
+}
+
+.container .eyes {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: block;
+    background-color: #fff;
+    margin-right: 20px;
+    margin-left: 45px;
+    border-radius: 50%;
+    box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #ffffff, inset 0 0 25px rgba(72, 71, 71, 0.83);
+}
+
+.container .eyes::before {
+top: 50px;
+left: 50px;
+transform: translate(-50%, -50%);
+width: 60px;
+height: 60px;
+border-radius: 50%;
+background: #000;
+position: absolute;
+border: 10px solid skyblue;
+box-sizing: border-box;
+}
+
+.eyes.after-look::before {
+    top: 50px;
+    left: 50px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #000;
+    position: absolute;
+    border: 10px solid skyblue;
+    box-sizing: border-box;
+    animation: rolling 4s linear alternate-reverse infinite;
+}
+
+@keyframes rolling {
+  0%{
+    transform:rotate(0deg)
+              translate(10px)
+              rotate(0deg);
+
+  }
+  100%{
+    transform:rotate(180deg)
+              translate(10px)
+              rotate(-180deg);
+  }
+
+}
