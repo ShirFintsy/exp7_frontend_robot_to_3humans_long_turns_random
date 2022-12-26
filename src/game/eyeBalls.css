@@ -4,13 +4,13 @@
 /*}*/
 
 .left-eye{
-   width:100px;
-  height:100px;
+   width:80px;
+  height:80px;
   border:1px solid #CCC;
   position:absolute;
   box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #ffffff,
   inset 0 0 25px rgba(72, 71, 71, 0.83);
-  top:280px; bottom:0; left:1075px;right:0;
+  top:235px; bottom:0; left:1103px;right:0;
   /*margin-left: 5px;*/
 /*margin-right: 20px;*/
 /*  margin-left: 45px;*/
@@ -19,20 +19,20 @@
 }
 
 .right-eye{
-  width:100px;
-  height:100px;
+  width:80px;
+  height:80px;
   border:1px solid #CCC;
   position:absolute;
   box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #ffffff,
   inset 0 0 25px rgba(72, 71, 71, 0.83);
-   top:280px; bottom:0; left:1240px;right:0;
+   top:235px; bottom:0; left:1230px;right:0;
   background: white;
   border-radius:50%;
 }
 
 .circle{
-  width:60px;
-  height:60px;
+  width:50px;
+  height:50px;
   background: #000;
   border: 10px solid skyblue;
   border-radius:50%;
@@ -40,19 +40,20 @@
   top:0; bottom:0; left:0;right:0;
   overflow:hidden;
   margin:auto;
+  animation-delay: 3s;
   animation: circle 2s linear infinite alternate-reverse;
 }
 
 @keyframes circle{
   0%{
     transform:rotate(30deg)
-              translate(20px)
+              translate(12px)
               rotate(30deg);
   
   }
   100%{
     transform:rotate(150deg)
-              translate(20px)
+              translate(12px)
               rotate(-150deg);
   }
 }

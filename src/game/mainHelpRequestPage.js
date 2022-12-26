@@ -52,7 +52,7 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
             <div className={"list-of-names"}>
             <ImageList sx={{ width: '100%', height: '100%'}}>
                 {itemData.map((item) => (
-                    <ImageListItem key={item.img}>
+                    <ImageListItem style={{marginLeft: '100px', marginRight: '100px'}} key={item.img}>
                         <img src={`${item.img}?w=248&fit=crop&auto=format`}
                              style={{borderRadius: '50%'}}
                              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`} alt={item.name} loading="lazy"/>

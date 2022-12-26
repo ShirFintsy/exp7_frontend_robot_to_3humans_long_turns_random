@@ -30,7 +30,7 @@ function EyeBalls() {
 
     return (
         <div className={"all-robot"} style={{ backgroundImage: "url(/eyes_of_the_robot.jpeg)", backgroundRepeat  : 'no-repeat',
-       backgroundPosition: 'center 0%', backgroundSize: 'contain', width: '100%', height: '450px', display: 'block'}}>
+       backgroundPosition: 'center 0%', backgroundSize: 'contain', width: '100%', height: '350px', display: 'block'}}>
             <div className={"eyes"}>
             <div className="right-eye">
                 <div className="circle"></div>
