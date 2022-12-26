@@ -40,20 +40,20 @@
   top:0; bottom:0; left:0;right:0;
   overflow:hidden;
   margin:auto;
-  animation: circle 4s linear infinite alternate-reverse;
+  animation: circle 2s linear infinite alternate-reverse;
 }
 
 @keyframes circle{
   0%{
-    transform:rotate(0deg)
+    transform:rotate(30deg)
               translate(20px)
-              rotate(0deg);
+              rotate(30deg);
   
   }
   100%{
     transform:rotate(150deg)
               translate(20px)
-              rotate(180deg);
+              rotate(-150deg);
   }
 }
 
