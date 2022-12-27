@@ -40,14 +40,14 @@ function GamePage() {
      */
     useEffect(() => {
         // Change the page to pop up notification about help
-        // if (score === 29 ||  score === 45) {
-        //     setHelpRequest(true);
-        //     nextHelpNum(currentHelpNum + 1); // count the help request number
-        // }
-        if (score%3 === 1) {
+        if (score === 29 ||  score === 45) {
             setHelpRequest(true);
-            //nextHelpNum(currentHelpNum + 1); // count the help request number
+            nextHelpNum(currentHelpNum + 1); // count the help request number
         }
+        // if (score%3 === 1) {
+        //     setHelpRequest(true);
+        //     //nextHelpNum(currentHelpNum + 1); // count the help request number
+        // }
 
         // send to finish function
         if(score === 70){
@@ -229,9 +229,9 @@ function GamePage() {
 
         setHelpRequest(false);
         setClickedNext(true);
-        // setTimeout(() => { //todo: return this to the code , now for debug
-        //     handleCloseRequest()
-        // }, [14000])
+        setTimeout(() => {
+            handleCloseRequest()
+        }, [14000])
         setImgSrc("thinking.gif");
         setRobot("The robot needs help...");
         //setAlexImgSrc("white.png");

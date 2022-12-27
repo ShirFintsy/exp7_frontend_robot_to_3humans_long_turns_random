@@ -33,10 +33,10 @@ function EyeBalls() {
        backgroundPosition: 'center 0%', backgroundSize: 'contain', width: '100%', height: '350px', display: 'block'}}>
             <div className={"eyes"}>
             <div className="right-eye">
-                <div className="circle"></div>
+                <div className="eyeball"></div>
             </div>
             <div className="left-eye">
-                <div className="circle"></div>
+                <div className="eyeball"></div>
             </div>
             </div>
 

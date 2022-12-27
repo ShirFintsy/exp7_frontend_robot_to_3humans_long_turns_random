@@ -63,9 +63,9 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
             </div>
             { popButtons ?
                 <div className={"buttons"}>
-                    <Button style={{"backgroundColor": "darksalmon", "borderColor": "darksalmon", "width": "200px"}}
+                    <Button style={{"backgroundColor": "darksalmon", "borderColor": "darksalmon", "width": "100px"}}
                            className={"class-btn"} onClick={onClickYes}> I'll help</Button>
-            <Button style={{"backgroundColor": "darksalmon", "borderColor": "darksalmon", "width": "200px"}}
+            <Button style={{"backgroundColor": "darksalmon", "borderColor": "darksalmon", "width": "100px"}}
                            className={"class-btn"} onClick={onClickNo}> No, sorry</Button>
                 </div>:
             <></> }
