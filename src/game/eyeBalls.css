@@ -1,74 +1,80 @@
-/*body{*/
-/* display: inline-block;*/
-/*  position: relative;*/
-
-/*}*/
-
-.eyes{
-  justify-content: center;
-  display: flex;
+.all-robot {
+  height: 500px;
 }
 
-.left-eye{
-  position: relative;
-    width: 100px;
-    height: 100px;
+
+.basic {
+display: flex;
+justify-content: center;
+
+  /*padding-top: 20%;*/
+  /*padding-left: 20%;*/
+
+}
+
+.left-eye {
+    position: relative;
+    width: 80px;
+    height: 80px;
     display: block;
     background-color: #fff;
-    margin-right: 20px;
-    margin-left: 45px;
+    transform: translate(-20%, 180%);
+    /*margin-right: 20px;*/
+    /*margin-left: 45px;*/
     border-radius: 50%;
     box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #ffffff, inset 0 0 25px rgba(72, 71, 71, 0.83);
-  /* width:80px;*/
-  /*height:80px;*/
-  /*border:1px solid #CCC;*/
-  /*position:relative;*/
-  /*box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #ffffff,*/
-  /*inset 0 0 25px rgba(72, 71, 71, 0.83);*/
-  /*top:235px; bottom:0; left: 58%;right:0;*/
-  /*  margin-left: 8px;*/
-  /*!*left:1103px*!*/
-  /*background: white;*/
-  /*border-radius:50%;*/
+
 }
 
-/*.right-eye{*/
-/*  width:80px;*/
-/*  height:80px;*/
-/*  border:1px solid #CCC;*/
-/*  position:absolute;*/
-/*  box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #ffffff,*/
-/*  inset 0 0 25px rgba(72, 71, 71, 0.83);*/
-/*   top:35%; bottom:0; left:60%;right:0;*/
-/*  background: white;*/
-/*  border-radius:50%;*/
-/*}*/
+.right-eye {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: block;
+    background-color: #fff;
+    transform: translate(40%, 180%);
+    /*margin-right: 20px;*/
+    /*margin-left: 45px;*/
+    border-radius: 50%;
+    box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2), inset 0 0 15px #ffffff, inset 0 0 25px rgba(72, 71, 71, 0.83);
 
-.eyeball{
-  width:50px;
-  height:50px;
-  background: #000;
-  border: 10px solid skyblue;
-  border-radius:50%;
-  position:absolute;
-  top:0; bottom:0; left:0;right:0;
-  overflow:hidden;
-  margin:auto;
-  animation-delay: 3s;
-  animation: circle 2s linear infinite alternate-reverse;
 }
+.eyeball {
+    width:50px;
+    height:50px;
+    background: #000;
+    border: 10px solid skyblue;
+    border-radius:50%;
+    position:absolute;
+    top:0; bottom:0; left:0;right:0;
+    overflow:hidden;
+    margin:auto;
+    animation: circle 5s linear infinite alternate-reverse;
+    animation-delay: 3s;
+    /*top: 50%;*/
+    /*left: 50px;*/
+    /*!*transform: translate(-50%, -50%);*!*/
+    /*width: 60px;*/
+    /*height: 60px;*/
+    /*border-radius: 50%;*/
+    /*background: #000;*/
+    /*position: absolute;*/
+    /*border: 10px solid skyblue;*/
+    /*box-sizing: border-box;*/
+}
+
+
 
 @keyframes circle{
-  0%{
+  0%, 50%{
     transform:rotate(30deg)
               translate(12px)
               rotate(30deg);
-  
+
   }
-  100%{
+  55%, 100%{
     transform:rotate(150deg)
               translate(12px)
               rotate(-150deg);
   }
 }
-

@@ -44,9 +44,8 @@ function GamePage() {
             setHelpRequest(true);
             nextHelpNum(currentHelpNum + 1); // count the help request number
         }
-        // if (score%3 === 1) {
+        // if (score%3 === 1) { //debug
         //     setHelpRequest(true);
-        //     //nextHelpNum(currentHelpNum + 1); // count the help request number
         // }
 
         // send to finish function
@@ -229,7 +228,7 @@ function GamePage() {
 
         setHelpRequest(false);
         setClickedNext(true);
-        setTimeout(() => {
+        setTimeout(() => { //todo: return it to code after debug
             handleCloseRequest()
         }, [14000])
         setImgSrc("thinking.gif");
