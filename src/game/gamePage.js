@@ -40,7 +40,7 @@ function GamePage() {
      */
     useEffect(() => {
         // Change the page to pop up notification about help
-        // if (score === 29 ||  score === 45) {
+        // if (score === 29 ||  score === 45 || score === 61) {
         //     setHelpRequest(true);
         //     nextHelpNum(currentHelpNum + 1); // count the help request number
         // }
@@ -207,7 +207,7 @@ function GamePage() {
         setClickedNext(true);
         // setTimeout(() => { //todo: return it to code after debug
         //     handleCloseRequest()
-        // }, [14000])
+        // }, [28000])
         setImgSrc("thinking.gif");
         setRobot("The robot needs help...");
         //setAlexImgSrc("white.png");
@@ -221,15 +221,6 @@ function GamePage() {
         setImgSrc("robot_with_eyes.jpg");
         setHuman("Alex and Kate are classifying pictures")
     }
-
-    // const openRobotQuiz = () => {
-    //      setQuiz(true);
-    // }
-    //
-    // const firstModel = () => {
-    //      setHelpRequest(false);
-    //      setClickedNext(true);
-    //  }
 
 
     return (

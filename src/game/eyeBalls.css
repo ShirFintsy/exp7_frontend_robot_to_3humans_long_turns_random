@@ -57,19 +57,19 @@ justify-content: center;
 
 
 @keyframes circle{
-  0%, 30%{
+  0%, 33%{
     transform:rotate(40deg)
               translate(13px)
               rotate(40deg);
 
   }
-    35%, 60%{
+    35%, 65%{
     transform:rotate(90deg)
               translate(13px)
               rotate(90deg);
 
   }
-  65%, 100%{
+  66%, 100%{
     transform:rotate(140deg)
               translate(13px)
               rotate(-140deg);

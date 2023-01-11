@@ -44,15 +44,22 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
     useEffect( () => {
         setTimeout(() => {
             setPop(true); // the sound finished and the buttons will pop
-        }, 5000);
+        }, 13000);
     }, []);
     return (
         // <div style={{ backgroundImage: "url(/man_and_robot.png)" }}>
         <div >
             <div id={"robot-eyes"} style={{"border": 'double', "margin": '10px'}}>
-                <p className={"request-text"}> I can't identify my picture. Can one of you help me?</p>
                 <EyeBalls/>
             </div>
+            { popButtons ?
+                <div className={"buttons"}>
+                    <Button style={{"backgroundColor": "darksalmon", "borderColor": "darksalmon", "width": "100px"}}
+                           className={"class-btn"} onClick={onClickYes}> I'll help</Button>
+            <Button style={{"backgroundColor": "darksalmon", "borderColor": "darksalmon", "width": "100px"}}
+                           className={"class-btn"} onClick={onClickNo}> No, sorry</Button>
+                </div>:
+            <></> }
             <div className={"list-of-names"}>
             <ImageList sx={{ width: '100%', height: '100%'}} style={{display: 'flex'}}>
                 {itemData.map((item) => (
@@ -65,14 +72,7 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
                 ))}
             </ImageList>
             </div>
-            { popButtons ?
-                <div className={"buttons"}>
-                    <Button style={{"backgroundColor": "darksalmon", "borderColor": "darksalmon", "width": "100px"}}
-                           className={"class-btn"} onClick={onClickYes}> I'll help</Button>
-            <Button style={{"backgroundColor": "darksalmon", "borderColor": "darksalmon", "width": "100px"}}
-                           className={"class-btn"} onClick={onClickNo}> No, sorry</Button>
-                </div>:
-            <></> }
+
 
         </div>
     )
