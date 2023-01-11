@@ -184,6 +184,11 @@
     margin-top: 40px;
 }
 
+.users-list {
+    list-style-type: none;
+    padding: 0;
+    height: 20px;
+}
 .human-text {
     font-size: 25px;
     float: right;
@@ -192,7 +197,7 @@
 }
 
 .robot-pic {
-    width: 250px;
+    width: 200px;
     height: auto;
     padding-top: 40px;
     padding-bottom: 15px;
@@ -201,10 +206,11 @@
 }
 
 .Alex-pic {
-    width: 120px;
+    width: 150px;
     height: auto;
     display: inline-block;
-    border-radius: 50%;
+    margin-top:15px
+    /*border-radius: 50%;*/
 }
 
 

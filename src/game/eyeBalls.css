@@ -49,32 +49,29 @@ justify-content: center;
     top:0; bottom:0; left:0;right:0;
     overflow:hidden;
     margin:auto;
-    animation: circle 5s linear infinite alternate-reverse;
+    /*animation: circle 5s linear infinite alternate-reverse;*/
+    animation: circle 4s linear infinite;
     animation-delay: 3s;
-    /*top: 50%;*/
-    /*left: 50px;*/
-    /*!*transform: translate(-50%, -50%);*!*/
-    /*width: 60px;*/
-    /*height: 60px;*/
-    /*border-radius: 50%;*/
-    /*background: #000;*/
-    /*position: absolute;*/
-    /*border: 10px solid skyblue;*/
-    /*box-sizing: border-box;*/
 }
 
 
 
 @keyframes circle{
-  0%, 50%{
-    transform:rotate(30deg)
-              translate(12px)
-              rotate(30deg);
+  0%, 30%{
+    transform:rotate(40deg)
+              translate(13px)
+              rotate(40deg);
 
   }
-  55%, 100%{
-    transform:rotate(150deg)
-              translate(12px)
-              rotate(-150deg);
+    35%, 60%{
+    transform:rotate(90deg)
+              translate(13px)
+              rotate(90deg);
+
+  }
+  65%, 100%{
+    transform:rotate(140deg)
+              translate(13px)
+              rotate(-140deg);
   }
 }

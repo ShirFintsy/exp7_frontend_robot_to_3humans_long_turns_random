@@ -22,12 +22,12 @@ function GamePage() {
     const [robotRunning, setRobot] = useState("Robot is currently classifying pictures");
     const [clickedYes, addClickYes] = useState(0);
     const [robotImgSrc, setImgSrc] = useState("robot_with_eyes.jpg");
-    const [AlexImgSrc, setAlexImgSrc] = useState("man.gif")
+    const [AlexImgSrc, setAlexImgSrc] = useState("alex_and_kate.jpg")
     const [loading, setLoading] = useState(false);
     const [loadingActivity, setLoadingAct] = useState("");
     const [robotAct, setRobotAct] = useState("Switching to robot's task");
     const [firstLoading, setFirst] = useState(0);
-    const [humanRunning, setHuman] = useState("Alex is classifying pictures");
+    const [humanRunning, setHuman] = useState("Alex and Kate are classifying pictures");
     const [AlexHelp, setAlexHelp] = useState(false);
     const [helpArray, setHelpArray] = useState([]);
     const [clickedNext, setClickedNext] = useState(false);
@@ -173,29 +173,6 @@ function GamePage() {
         websocket.send(JSON.stringify({"action": "get-new-image", "session": session}));
         timer = setTimeout(() => setWaitForImage(false), 20000);
     }
-    // /**
-    //  * Notify the user that Alex is helping the robot
-    //  */
-    // const otherUserHelps = () => {
-    //     setHelpRequest(false);
-    //     setRobot("\n");
-    //     setTimeout(() => {
-    //         setAlexHelp(true);
-    //         setImgSrc("man_and_robot.png");
-    //         setHuman("Alex is helping the robot");
-    //         setAlexImgSrc("white.png");
-    //
-    //     },1500);
-    //
-    //     setTimeout(() => {
-    //         setRobot("Robot is currently classifying pictures");
-    //         setHuman("Alex is classifying pictures");
-    //         // setAlexImgSrc("man.gif");
-    //         setImgSrc("radio-bot-animated.gif");
-    //         setAlexHelp(false);
-    //         setAlexImgSrc("man.gif");
-    //     }, 13000);
-    // }
 
     /**
      * Changes in left screen when user clicked "yes" on help request, and starting the delay part - loading page to
@@ -209,7 +186,7 @@ function GamePage() {
         setClickedNext(false); // close the requset page
         setRobot("");
         setImgSrc("robot_with_eyes.jpeg");
-        setHuman("Alex is classifying pictures");
+        setHuman("Alex and Kate are classifying pictures");
         addClickYes(clickedYes + 1);
         setLoading(true);
         setFirst(1);
@@ -235,14 +212,14 @@ function GamePage() {
         setRobot("The robot needs help...");
         //setAlexImgSrc("white.png");
 
-        setHuman("Alex is also stopped")
+        setHuman("Alex and Kate are also stopped")
     }
 
     const handleCloseRequest = () => {
         setClickedNext(false);
         setRobot("");
         setImgSrc("robot_with_eyes.jpg");
-        setHuman("Alex is classifying pictures")
+        setHuman("Alex and Kate are classifying pictures")
     }
 
     // const openRobotQuiz = () => {
@@ -277,7 +254,7 @@ function GamePage() {
                                         <div className={AlexHelp ? null : "participants-view-div"}></div>
                                         <div className={"Alex-part"}>
                                             <img src={AlexImgSrc} alt={"Alex-pic"} className={"Alex-pic"}/>
-                                            <div className={"human-text"}>{humanRunning}</div>
+                                                    <div className={"human-text"}>{humanRunning}</div>
                                         </div>
                                     </div>
                                 </div>
