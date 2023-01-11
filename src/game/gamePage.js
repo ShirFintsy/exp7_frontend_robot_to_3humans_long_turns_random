@@ -246,7 +246,7 @@ function GamePage() {
         setClickedNext(false);
         setRobot("");
         setImgSrc("robot_with_eyes.jpg");
-        setHuman("Alex is classifying pictures")
+        setHuman("Alex and Kate are classifying pictures")
     }
     /**
      * Handle the case where the user clicked the "no" button in the help request page
@@ -259,7 +259,7 @@ function GamePage() {
         setClickedNext(false);
         setRobot("");
         setImgSrc("robot_with_eyes.jpg");
-        setHuman("Alex is classifying pictures")
+        setHuman("Alex and Kate are classifying pictures")
     }
 
     const handleCloseNotify = () => {
