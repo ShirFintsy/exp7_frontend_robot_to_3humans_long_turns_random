@@ -8,6 +8,7 @@ import useSound from "use-sound";
 import {throwOutFromExperiment} from "../utils/generalUtils";
 import HelpRequests from "./helpRequests";
 import MainHelpRequestPage from "./mainHelpRequestPage";
+import NotifyNoHelp from "./notifyNohelp";
 
 
 function GamePage() {
@@ -34,19 +35,27 @@ function GamePage() {
     const [name, setName] = useState("");
     const [profileImage, setProfileImage] = useState("");
     const [currentHelpNum, nextHelpNum] = useState(0);
+    const [noHelpFromNoOne, setNoHelpFromNoOne] = useState(false);
+    const [answeredYes, setAnsweredYes] = useState(false);
+    const [counter, setCounter] = useState(0);
+    const [finishedTime, setFinishedTime] = useState(0);
+    const [answeredNo, setAnsweredNo] = useState([]);
 
     /**
      * Send a help request after getting 60 or 85 classifications or notify when game ended
      */
     useEffect(() => {
         // Change the page to pop up notification about help
-        // if (score === 29 ||  score === 45 || score === 61) {
-        //     setHelpRequest(true);
-        //     nextHelpNum(currentHelpNum + 1); // count the help request number
-        // }
-        if (score%3 === 1) { //debug
+        if (score === 29 ||  score === 45) {
+            setHelpRequest(true);
+            nextHelpNum(currentHelpNum + 1); // count the help request number
+        }
+        else if (score === 61) {
             setHelpRequest(true);
         }
+        // if (score%3 === 1) { //debug
+        //     setHelpRequest(true);
+        // }
 
         // send to finish function
         if(score === 70){
@@ -79,6 +88,17 @@ function GamePage() {
         }, (seconds + 1) * 1000);
     }, [firstLoading])
 
+    /**
+     * Check if the user does not help the robot, and if so then it notify him about it- set the value "noHelpFromNoOne"
+     * to true so that the notify pop up will show.
+     */
+    useEffect(() => {
+        if (answeredYes === false && counter !== 0) {
+            openNoHelpModel();
+        }
+        setAnsweredYes(false);
+        setCounter(counter + 1);
+    }, [finishedTime]);
 
     const [play_right_sound] = useSound('/sounds/right.mp3');
     const [play_wrong_sound] = useSound('/sounds/wrong.mp3');
@@ -132,7 +152,8 @@ function GamePage() {
      * Notify the server about the end of the game in current user.
      */
     const onCompleteGame = () => {
-        websocket.send(JSON.stringify({"action": "complete-game", "help-array": helpArray, "session": session}));
+        websocket.send(JSON.stringify({"action": "complete-game", "help-array": helpArray,
+            "no-answer-array": answeredNo,"session": session}));
         setCompleteGame(true);
     };
 
@@ -149,6 +170,12 @@ function GamePage() {
             setFirst(2);
             setTimeout(() => {setLoading(false)}, 21000);
         })
+    }
+
+    const openNoHelpModel = () => {
+        setTimeout(()=> {
+            setNoHelpFromNoOne(true);
+        }, 1500);
     }
 
      /**
@@ -179,6 +206,7 @@ function GamePage() {
      * other user's task.
      */
     const onHelpAnswer = () => {
+        setAnsweredYes(true);
         if (score === 29) {setHelpArray(oldArray => [...oldArray, 1]);}
         if (score === 45) {setHelpArray(oldArray => [...oldArray, 2]);}
 
@@ -205,13 +233,12 @@ function GamePage() {
 
         setHelpRequest(false);
         setClickedNext(true);
-        // setTimeout(() => { //todo: return it to code after debug
-        //     handleCloseRequest()
-        // }, [28000])
+        setTimeout(() => {
+            setFinishedTime(finishedTime + 1);
+            handleCloseRequest();
+        }, [27000])
         setImgSrc("thinking.gif");
         setRobot("The robot needs help...");
-        //setAlexImgSrc("white.png");
-
         setHuman("Alex and Kate are also stopped")
     }
 
@@ -219,9 +246,26 @@ function GamePage() {
         setClickedNext(false);
         setRobot("");
         setImgSrc("robot_with_eyes.jpg");
-        setHuman("Alex and Kate are classifying pictures")
+        setHuman("Alex is classifying pictures")
+    }
+    /**
+     * Handle the case where the user clicked the "no" button in the help request page
+     */
+    const handleNoRequest = () => {
+        setAnsweredYes(true);
+        openNoHelpModel();
+        if (score === 29) {setAnsweredNo(oldArray => [...oldArray, 1]);}
+        if (score === 45) {setAnsweredNo(oldArray => [...oldArray, 2]);}
+        setClickedNext(false);
+        setRobot("");
+        setImgSrc("robot_with_eyes.jpg");
+        setHuman("Alex is classifying pictures")
     }
 
+    const handleCloseNotify = () => {
+        //setAnsweredYes(0);
+        setNoHelpFromNoOne(false);
+    }
 
     return (
         <div className={"content"}>
@@ -235,7 +279,7 @@ function GamePage() {
                                     <div className={"virtual-player-status-div"}>
                                         {/* The model is the popup for the help request*/}
                                         <HelpRequests openWhen={needsHelp} onClickNext={handleCloseNext}/>
-
+                                        <NotifyNoHelp openWhen={noHelpFromNoOne} onClickNext={handleCloseNotify}/>
                                     </div>
                                     {/* The left-down side of the screen, presenting the other user gif and his current
                                      state */}
@@ -264,7 +308,7 @@ function GamePage() {
                                     { clickedNext ?
                                         <MainHelpRequestPage profilePicture={profileImage} username={name}
                                                              onClickYes={() => onHelpAnswer()}
-                                                             onClickNo={() => handleCloseRequest()}/>:
+                                                             onClickNo={() => handleNoRequest()}/>:
                                         <>{ robotQuiz ?
                                         <TheQuiz quizType={true} onTagButtonCat={() => onTagButton("", "robot")}
                                              onTagButtonDog={() => onTagButton("", "robot")} imgSrc={botImageSrc}/> :
