@@ -31,6 +31,10 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
     name: 'Alex',
     user: '',
   },{
+    img: 'kate_img.webp',
+    name: 'Kate',
+    user: '',
+  }, {
     img: srcImage,
     name: username,
     user: '(Me)',
@@ -50,9 +54,9 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
                 <EyeBalls/>
             </div>
             <div className={"list-of-names"}>
-            <ImageList sx={{ width: '100%', height: '100%'}}>
+            <ImageList sx={{ width: '100%', height: '100%'}} style={{display: 'flex'}}>
                 {itemData.map((item) => (
-                    <ImageListItem style={{marginLeft: '100px', marginRight: '100px'}} key={item.img}>
+                    <ImageListItem style={{marginLeft: '60px', marginRight: '60px', width: '30%'}} key={item.img}>
                         <img src={`${item.img}?w=248&fit=crop&auto=format`}
                              style={{borderRadius: '50%'}}
                              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`} alt={item.name} loading="lazy"/>

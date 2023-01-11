@@ -20,13 +20,6 @@ function EyeBalls() {
 
     }
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         //changeMove(!eyeMovement);
-    //         clicker();
-    //     }, 2000);
-    // },[eyeMovement]);
-
 
     return (
        <div className={"all-robot"} style={{ backgroundImage: "url(/eyes_of_the_robot.jpeg)", backgroundRepeat  : 'no-repeat',
