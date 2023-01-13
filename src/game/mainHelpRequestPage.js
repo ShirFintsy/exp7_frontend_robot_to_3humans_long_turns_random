@@ -31,7 +31,7 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
     name: 'Alex',
     user: '',
   },{
-    img: 'kate_img.webp',
+    img: 'kate_img.jpg',
     name: 'Kate',
     user: '',
   }, {

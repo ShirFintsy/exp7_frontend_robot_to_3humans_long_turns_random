@@ -16,7 +16,7 @@ function AwarenessQuiz() {
     "Q2": "I can choose to help the robot or not",
     "Q3": "The robot's current picture will be loaded and I will need to classify it (dog or cat)," +
         " and then my own task will be loaded back so I can complete it (about 30-40 seconds delay experienced)",
-    "Q4": "Both the other user and I can help the robot when it gets stuck",
+    "Q4": "Both the other users and I can help the robot when it gets stuck",
     "Q5": "Once I complete 70 correct classifications and then answered the feedback questions"
   }
 
@@ -65,7 +65,7 @@ function AwarenessQuiz() {
         choices: [
           correctAnswers.Q4,
           "Only I can",
-          "Only the other user that engaged in classification, can",
+          "Only one of  the other users that engaged in classification can",
         ]
       }, {
       type: "radiogroup",

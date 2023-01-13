@@ -42,7 +42,7 @@ function UserFeedbackPage() {
           }, {
             type: "radiogroup",
             name: "Q4",
-            title: "In your opinion, if Alex was not in the game (was not able to help), " +
+            title: "In your opinion, if Alex and Kate were not in the game (was not able to help), " +
                 "do you think you would have helped more or less?",
             isRequired: true,
             "choices": [ "More", "Less", "Same"]
@@ -59,7 +59,7 @@ function UserFeedbackPage() {
            {
             type: "radiogroup",
             name: "Q5",
-            title: "In your opinion, if Alex had helped more, do you think you would have helped more or less?",
+            title: "In your opinion, if Alex and Kate had helped more, do you think you would have helped more or less?",
             isRequired: true,
             "choices": [ "More", "Less", "Same"]
           }, {
@@ -71,7 +71,7 @@ function UserFeedbackPage() {
           } ,{
             type: "radiogroup",
             name: "Q6",
-            title: "In your opinion, if there were more people that could have help the robot (other than you and Alex), " +
+            title: "In your opinion, if there were more people that could have help the robot (other than you, Alex and Kate), " +
                 "do you think you would have helped more or less?",
             isRequired: true,
             "choices": [ "More", "Less", "Same"]
