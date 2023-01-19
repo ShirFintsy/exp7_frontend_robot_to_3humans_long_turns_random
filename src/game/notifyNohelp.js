@@ -9,7 +9,7 @@ function NotifyNoHelp({openWhen,onClickNext}) {
                 <Modal.Header closeButton>
                     <Modal.Title>Notice!</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>The robot received no help, neither from you nor from Alex or Kate.</Modal.Body>
+                <Modal.Body>The robot received no help, neither from you nor from Alex or Dave.</Modal.Body>
                 <Modal.Footer>
                         <Button variant="primary" onClick={onClickNext}>
                         Next

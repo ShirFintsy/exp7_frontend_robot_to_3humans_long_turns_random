@@ -23,12 +23,12 @@ function GamePage() {
     const [robotRunning, setRobot] = useState("Robot is currently classifying pictures");
     const [clickedYes, addClickYes] = useState(0);
     const [robotImgSrc, setImgSrc] = useState("robot_with_eyes.jpg");
-    const [AlexImgSrc, setAlexImgSrc] = useState("alex_and_kate.jpg")
+    const [AlexImgSrc, setAlexImgSrc] = useState("Alex_and_Dave.png")
     const [loading, setLoading] = useState(false);
     const [loadingActivity, setLoadingAct] = useState("");
     const [robotAct, setRobotAct] = useState("Switching to robot's task");
     const [firstLoading, setFirst] = useState(0);
-    const [humanRunning, setHuman] = useState("Alex and Kate are classifying pictures");
+    const [humanRunning, setHuman] = useState("Alex and Dave are classifying pictures");
     const [AlexHelp, setAlexHelp] = useState(false);
     const [helpArray, setHelpArray] = useState([]);
     const [clickedNext, setClickedNext] = useState(false);
@@ -46,12 +46,9 @@ function GamePage() {
      */
     useEffect(() => {
         // Change the page to pop up notification about help
-        if (score === 29 ||  score === 45) {
+        if (score === 29 ||  score === 45 || score === 61) {
             setHelpRequest(true);
             nextHelpNum(currentHelpNum + 1); // count the help request number
-        }
-        else if (score === 61) {
-            setHelpRequest(true);
         }
         // if (score%3 === 1) { //debug
         //     setHelpRequest(true);
@@ -209,12 +206,13 @@ function GamePage() {
         setAnsweredYes(true);
         if (score === 29) {setHelpArray(oldArray => [...oldArray, 1]);}
         if (score === 45) {setHelpArray(oldArray => [...oldArray, 2]);}
+        if (score === 61) {setHelpArray(oldArray => [...oldArray, 3]);}
 
         setQuiz(true);
         setClickedNext(false); // close the requset page
         setRobot("");
         setImgSrc("robot_with_eyes.jpeg");
-        setHuman("Alex and Kate are classifying pictures");
+        setHuman("Alex and Dave are classifying pictures");
         addClickYes(clickedYes + 1);
         setLoading(true);
         setFirst(1);
@@ -239,14 +237,14 @@ function GamePage() {
         }, [27000])
         setImgSrc("thinking.gif");
         setRobot("The robot needs help...");
-        setHuman("Alex and Kate are also stopped")
+        setHuman("Alex and Dave are also stopped")
     }
 
     const handleCloseRequest = () => {
         setClickedNext(false);
         setRobot("");
         setImgSrc("robot_with_eyes.jpg");
-        setHuman("Alex and Kate are classifying pictures")
+        setHuman("Alex and Dave are classifying pictures")
     }
     /**
      * Handle the case where the user clicked the "no" button in the help request page
@@ -256,10 +254,11 @@ function GamePage() {
         openNoHelpModel();
         if (score === 29) {setAnsweredNo(oldArray => [...oldArray, 1]);}
         if (score === 45) {setAnsweredNo(oldArray => [...oldArray, 2]);}
+        if (score === 61) {setAnsweredNo(oldArray => [...oldArray, 3]);}
         setClickedNext(false);
         setRobot("");
         setImgSrc("robot_with_eyes.jpg");
-        setHuman("Alex and Kate are classifying pictures")
+        setHuman("Alex and Dave are classifying pictures")
     }
 
     const handleCloseNotify = () => {

@@ -8,7 +8,7 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
     const [popButtons, setPop] = useState(false);
     let srcImage = null;
     if (profilePicture === "default") { //todo: change with real images
-        srcImage = "profile_pictures/default.jpg";
+        srcImage = "profile_pictures/default.png";
     } else if (profilePicture === "woman1") {
         srcImage = "profile_pictures/woman1.png";
     } else if (profilePicture === "woman2") {
@@ -27,12 +27,12 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
 
     const itemData = [
   {
-    img: 'man.gif',
+    img: 'Alex.png',
     name: 'Alex',
     user: '',
   },{
-    img: 'kate_img.jpg',
-    name: 'Kate',
+    img: 'Dave.png',
+    name: 'Dave',
     user: '',
   }, {
     img: srcImage,
@@ -47,7 +47,6 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
         }, 13000);
     }, []);
     return (
-        // <div style={{ backgroundImage: "url(/man_and_robot.png)" }}>
         <div >
             <div id={"robot-eyes"} style={{"border": 'double', "margin": '10px'}}>
                 <EyeBalls/>
