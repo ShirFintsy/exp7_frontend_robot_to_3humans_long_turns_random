@@ -50,8 +50,8 @@ justify-content: center;
     overflow:hidden;
     margin:auto;
     /*animation: circle 5s linear infinite alternate-reverse;*/
-    animation: circle 4s linear infinite;
-    animation-delay: 3s;
+    animation: circle 10s linear infinite;
+    animation-delay: 2s;
 }
 
 
