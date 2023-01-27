@@ -22,7 +22,7 @@ function MainHelpRequestPage({profilePicture, username, onClickYes, onClickNo}) 
     } else if (profilePicture === "man2") {
         srcImage = "profile_pictures/man2.png";
     } else { //man3
-        srcImage = "profile_pictures/woman3.png";
+        srcImage = "profile_pictures/man3.png";
     }
 
     const itemData = [

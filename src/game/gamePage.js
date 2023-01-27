@@ -241,10 +241,13 @@ function GamePage() {
     }
 
     const handleCloseRequest = () => {
-        setClickedNext(false);
-        setRobot("");
-        setImgSrc("robot_with_eyes.jpg");
-        setHuman("Alex and Dave are classifying pictures")
+         if (clickedNext){
+             setClickedNext(false);
+            setRobot("");
+            setImgSrc("robot_with_eyes.jpg");
+            setHuman("Alex and Dave are classifying pictures")
+         }
+
     }
     /**
      * Handle the case where the user clicked the "no" button in the help request page
