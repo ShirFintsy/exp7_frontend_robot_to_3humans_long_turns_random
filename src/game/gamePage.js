@@ -241,12 +241,10 @@ function GamePage() {
     }
 
     const handleCloseRequest = () => {
-         if (clickedNext){
-             setClickedNext(false);
-            setRobot("");
-            setImgSrc("robot_with_eyes.jpg");
-            setHuman("Alex and Dave are classifying pictures")
-         }
+       setClickedNext(false);
+       setRobot("");
+       setImgSrc("robot_with_eyes.jpg");
+       setHuman("Alex and Dave are classifying pictures")
 
     }
     /**
