@@ -54,24 +54,32 @@ justify-content: center;
     animation-delay: 2s;
 }
 
+:root {
+    --angel11: 0deg;
+    --angel21: 0deg;
+    --angel31: 0deg;
+    --angel12: 0deg;
+    --angel22: 0deg;
+    --angel32: 0deg;
+}
 
 
 @keyframes circle{
   0%, 33%{
-    transform:rotate(40deg)
+    transform:rotate(var(--angel11))
               translate(13px)
-              rotate(40deg);
+              rotate(var(--angel12));
 
   }
     35%, 65%{
-    transform:rotate(90deg)
+    transform:rotate(var(--angel21))
               translate(13px)
-              rotate(90deg);
+              rotate(var(--angel22));
 
   }
   66%, 100%{
-    transform:rotate(140deg)
+    transform:rotate(var(--angel31))
               translate(13px)
-              rotate(-140deg);
+              rotate(var(--angel32));
   }
 }
