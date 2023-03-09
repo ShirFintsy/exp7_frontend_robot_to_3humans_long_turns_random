@@ -42,7 +42,7 @@ function UserFeedbackPage() {
           }, {
             type: "radiogroup",
             name: "Q4",
-            title: "In your opinion, if Alex and Dave were not in the game (was not able to help), " +
+            title: "In your opinion, if Alex and Dave were not in the game (were not able to help), " +
                 "do you think you would have helped more or less?",
             isRequired: true,
             "choices": [ "More", "Less", "Same"]

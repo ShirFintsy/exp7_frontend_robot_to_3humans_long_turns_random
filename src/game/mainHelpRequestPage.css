@@ -1,7 +1,7 @@
-/*#robot-eyes {*/
-/*    animation: movement 5s linear infinite alternate-reverse;*/
-/*    !*animation-delay: 1s;*!*/
-/*}*/
+#robot-eyes {
+    animation: movement 5s linear infinite alternate-reverse;
+    /*animation-delay: 1s;*/
+}
 
 
 @keyframes movement{
